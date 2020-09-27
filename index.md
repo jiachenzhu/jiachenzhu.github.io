@@ -10,5 +10,5 @@ I am a first year computer science PhD student at NYU Courant working with [Yann
 ### Research Interests
 I am interested in self-supervised learning methods for images or videos.
 
-### Contract
+### Contact
 jiachen.zhu AT nyu.edu
