@@ -1,8 +1,14 @@
-## Welcome to GitHub Pages
+## About me
+I am a first year computer science PhD student at NYU Courant working with Yann LeCun. I am interested in self-supervised learning methods for image or video.
 
-You can use the [editor on GitHub](https://github.com/jiachenzhu/jiachenzhu.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Education
+- PhD, Computer Science, New York University, 2020 - Now
+- MSc, Computer Science, New York University, 2018 - 2020
+- BSc, Computer Science, The Hong Kong Polytechnic University, 2010 - 2015
+- BSc, Management, The Hong Kong Polytechnic University, 2010 - 2015
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+
 
 ### Markdown
 
