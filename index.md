@@ -1,5 +1,5 @@
 ### About Me
-I am a first-year computer science PhD condidate at NYU Courant advised by [Yann LeCun](http://yann.lecun.com/). Prior to this, I got my bachelor's degrees at the Hong Kong Polytechnic University in 2015 and master's degree at NYU in 2020.
+I am a second-year computer science PhD condidate at NYU Courant advised by [Yann LeCun](http://yann.lecun.com/). Prior to this, I got my bachelor's degrees at the Hong Kong Polytechnic University in 2015 and master's degree at NYU in 2020.
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - Now
@@ -9,6 +9,9 @@ I am a first-year computer science PhD condidate at NYU Courant advised by [Yann
 
 ### Research Interests
 I am interested in self-supervised learning methods for images or videos.
+
+### Papers
+[Masked Siamese ConvNets](https://arxiv.org/abs/2206.07700)
 
 ### Contact
 jiachen.zhu AT nyu.edu
