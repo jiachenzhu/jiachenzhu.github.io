@@ -12,6 +12,7 @@ I am interested in self-supervised learning methods for images or videos.
 
 ### Papers
 [Masked Siamese ConvNets](https://arxiv.org/abs/2206.07700)
+[TiCo: Transformation Invariance and Covariance Contrast for Self-Supervised Visual Representation Learning](https://arxiv.org/abs/2206.10698)
 
 ### Contact
 jiachen.zhu AT nyu.edu
