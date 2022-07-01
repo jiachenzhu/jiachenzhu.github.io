@@ -22,3 +22,5 @@ jiachen.zhu AT nyu.edu
 [My Favourite Illusion!](http://illusionoftheyear.com/2009/05/the-illusion-of-sex/)
 
 The two ideas that I found both shockingly simple and extremely clever: [1](https://en.wikipedia.org/wiki/Merton_model), [2](https://en.wikipedia.org/wiki/Convolutional_neural_network)
+
+[My favourite TensorFlow function!](https://jiachenzhu.github.io/404.html)
