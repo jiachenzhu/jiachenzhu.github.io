@@ -1,4 +1,4 @@
-![My Advisor's First Computer!](yann_computer.jpg)
+![My Advisor's First Computer!](yann_computer.jpg =189x252)
 
 ### About Me
 I am a second-year computer science PhD condidate at NYU Courant advised by [Yann LeCun](http://yann.lecun.com/). Prior to this, I got my bachelor's degrees at the Hong Kong Polytechnic University in 2015 and master's degree at NYU in 2020.
