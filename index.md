@@ -1,7 +1,7 @@
 <img src="yann_computer.jpg" data-canonical-src="yann_computer.jpg" width="189" height="252" />
 
 ### About Me
-I am a second-year computer science PhD condidate at NYU Courant advised by [Yann LeCun](http://yann.lecun.com/). Prior to this, I got my bachelor's degrees at the Hong Kong Polytechnic University in 2015 and master's degree at NYU in 2020.
+I am a fourth-year computer science PhD condidate at NYU Courant advised by [Yann LeCun](http://yann.lecun.com/). Prior to this, I got my bachelor's degrees at the Hong Kong Polytechnic University in 2015 and master's degree at NYU in 2020.
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - Now
@@ -13,6 +13,10 @@ I am a second-year computer science PhD condidate at NYU Courant advised by [Yan
 I am interested in self-supervised learning methods for images or videos.
 
 ### Papers
+[Variance-Covariance Regularization Improves Representation Learning](https://arxiv.org/abs/2306.13292)
+
+[VoLTA: Vision-Language Transformer with Weakly-Supervised Local-Feature Alignment](https://arxiv.org/abs/2210.04135)
+
 [Masked Siamese ConvNets](https://arxiv.org/abs/2206.07700)
 
 [TiCo: Transformation Invariance and Covariance Contrast for Self-Supervised Visual Representation Learning](https://arxiv.org/abs/2206.10698)
