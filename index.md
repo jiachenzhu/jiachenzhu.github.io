@@ -10,7 +10,7 @@ I am a fourth-year computer science PhD condidate at NYU Courant advised by [Yan
 - BSc, Management, [The Hong Kong Polytechnic University](https://mm.polyu.edu.hk/), 2010 - 2015
 
 ### Research Interests
-I am interested in self-supervised learning methods for images or videos.
+I am interested in self-supervised learning methods for images or videos. I am also interested in understanding the design of all kind of neural network architectures.
 
 ### Papers
 [Variance-Covariance Regularization Improves Representation Learning](https://arxiv.org/abs/2306.13292)
