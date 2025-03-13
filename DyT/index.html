@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformers without Normalization - DynamicTanh - DyT</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Academic Theme Variables */
+        :root {
+            --primary-color: #0B1F33;
+            --secondary-color: #8B4513;
+            --accent-color: #1976D1;
+            --light-color: #FFFFF0;
+            --dark-color: #483D8B;
+            --text-color: #333333;
+            --background-color: #FFFFF8;
+            --card-background: #FFFFF8;
+            --header-gradient: linear-gradient(135deg, #483D8B 0%, #0B1F33 100%);
+            --footer-gradient: linear-gradient(135deg, #0B1F33 0%, #483D8B 100%);
+            --nav-gradient: linear-gradient(90deg, #483D8B 0%, #0B1F33 100%);
+            --header-text-color: #ffffff;
+            --footer-text-color: #ffffff;
+        }
+        
+        /* Font Settings - UPDATED FOR LARGER TEXT */
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            font-size: 18px; /* Increased from default */
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        /* Element Styles */
+        .header-section {
+            background: var(--header-gradient);
+            padding: 60px 0;
+            margin-bottom: 30px;
+            color: var(--header-text-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            background: var(--nav-gradient);
+        }
+        
+        /* Author styles - UPDATED FOR LARGER TEXT */
+        .author-line {
+            font-size: 1.15rem; /* Increased from 1.1rem */
+            font-weight: 600;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        
+        .project-lead-line {
+            font-size: 1.1rem; /* Increased from 0.95rem */
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+        }
+
+        .institution-line {
+            font-size: 1.1rem; /* Increased from 0.95rem */
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+        
+        .author-link {
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 3px 5px;
+            border-radius: 4px;
+        }
+        
+        .author-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: underline;
+        }
+        
+        /* Paper title - UPDATED FOR LARGER TEXT */
+        .paper-title {
+            font-weight: 700;
+            font-size: 36px; /* Increased */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Abstract - UPDATED FOR LARGER TEXT */
+        .abstract {
+            background-color: var(--light-color);
+            padding: 30px; /* Increased from 25px */
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            font-size: 19px; /* Slightly larger than body text */
+        }
+        
+        /* Section title - UPDATED FOR LARGER TEXT */
+        .section-title {
+            margin: 40px 0 20px 0;
+            font-weight: 600;
+            font-size: 28px; /* Increased */
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding: 30px 0;
+            background: var(--footer-gradient);
+            color: var(--footer-text-color);
+        }
+        
+        .resources-card {
+            height: 100%;
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+            background-color: var(--card-background);
+        }
+        
+        .resources-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: none;
+            background-color: var(--card-background);
+        }
+        
+        /* Button styles - UPDATED FOR LARGER TEXT */
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .accent-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn {
+            font-size: 17px; /* Increased */
+            padding: 8px 16px; /* More padding */
+        }
+        
+        /* Badge styles - UPDATED FOR LARGER TEXT */
+        .theme-badge {
+            background-color: var(--primary-color);
+        }
+        
+        .theme-badge-alt {
+            background-color: var(--secondary-color);
+        }
+        
+        .theme-badge-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .theme-badge-dark {
+            background-color: var(--dark-color);
+        }
+        
+        .badge {
+            font-size: 14px; /* Increased */
+            padding: 6px 10px; /* More padding for better visibility */
+        }
+        
+        .citation-block {
+            background-color: var(--light-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px; /* Increased */
+            line-height: 1.6;
+        }
+        
+        /* Figure section styles - UPDATED FOR LARGER TEXT */
+        .figure-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .figure-container {
+            background-color: var(--card-background);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .figure-caption {
+            margin-top: 15px;
+            font-size: 1.1rem; /* Increased from 0.95rem */
+            color: var(--text-color);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Navigation link size - UPDATED */
+        .navbar .nav-link {
+            font-size: 1.1rem; /* Increased */
+            padding: 0.7rem 1rem; /* Add more padding for better clickability */
+        }
+        
+        /* Make secondary headings larger */
+        h4 {
+            font-size: 22px; /* Increased */
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        /* Increase card title and text size */
+        .card-title {
+            font-size: 22px; /* Increased */
+        }
+        
+        .card-text {
+            font-size: 18px; /* Match body text */
+        }
+        
+        /* Code block styles */
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid var(--secondary-color);
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .code-block pre {
+            margin: 0;
+        }
+        
+        .code-comment {
+            color: #777777;
+        }
+        
+        .code-keyword {
+            color: #0000FF;
+        }
+        
+        .code-function {
+            color: #007700;
+        }
+        
+        .code-symbol {
+            color: #8B4513;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Header Section -->
+    <header class="header-section" id="overview">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="paper-title">Transformers without Normalization</h1>
+                    <div class="author-line text-center mb-2">
+                        <span><a href="https://jiachenzhu.github.io/" class="text-light author-link">Jiachen&nbsp;Zhu<sup>1,2</sup></a></span>
+                        <span class="mx-2 text-light">•</span>
+                        <span><a href="https://xinleic.xyz/" class="text-light author-link">Xinlei&nbsp;Chen<sup>1</sup></a></span>
+                        <span class="mx-2 text-light">•</span>
+                        <span><a href="https://people.csail.mit.edu/kaiming/" class="text-light author-link">Kaiming&nbsp;He<sup>3</sup></a></span>
+                        <span class="mx-2 text-light">•</span>
+                        <span><a href="http://yann.lecun.com" class="text-light author-link">Yann&nbsp;LeCun<sup>1,2</sup></a></span>
+                        <span class="mx-2 text-light">•</span>
+                        <span><a href="https://liuzhuang13.github.io" class="text-light author-link">Zhuang&nbsp;Liu<sup>1,4,†</sup></a></span>
+                    </div>
+                    <div class="project-lead-line mt-2 mb-3 text-center">
+                        <span class="text-light"><sup>†</sup> Project Lead</span>
+                    </div>
+                    <div class="institution-line text-center mb-3">
+                        <span class="institution"><sup>1</sup>FAIR, Meta</span>
+                        <span class="mx-2 text-light">•</span>
+                        <span class="institution"><sup>2</sup>New York University</span>
+                        <span class="mx-2 text-light">•</span>
+                        <span class="institution"><sup>3</sup>MIT</span>
+                        <span class="mx-2 text-light">•</span>
+                        <span class="institution"><sup>4</sup>Princeton University</span>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-light me-2" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);"><i class="fas fa-file-alt me-2" style="color: var(--primary-color);"></i>Paper</a>
+                        <a href="#" class="btn btn-light me-2" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);"><i class="fab fa-github me-2" style="color: var(--primary-color);"></i>Code</a>
+                        <a href="#" class="btn btn-light me-2" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);"><i class="fab fa-x-twitter me-2" style="color: var(--primary-color);"></i>Summary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Figure Section (New) -->
+        <section id="figure" class="figure-section">
+            <!-- Title removed -->
+            <div class="seamless-figure">
+                <!-- Replace this placeholder with your actual figure when ready -->
+                <img src="webpage_assets/before_after.svg" alt="Dynamic Tanh (DyT) as a replacement for normalization in Transformers" class="img-fluid">
+                <div class="figure-caption">
+                    <em>Left:</em> original Transformer block. <em>Right:</em> block with our proposed Dynamic Tanh (DyT) layer. DyT is a straightforward replacement for commonly used Layer Norm or RMSNorm layers. Transformers with DyT match or exceed the performance of their normalized counterparts.
+                </div>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section id="abstract">
+            <h2 class="section-title">Abstract</h2>
+            <div class="abstract">
+                <p>
+                    Normalization layers are ubiquitous in modern neural networks and have long been considered essential.
+                    This work demonstrates that Transformers without normalization can achieve the same or better performance using a remarkably simple technique.
+                    We introduce Dynamic Tanh (DyT), an element-wise operation $$\mathrm{DyT}(\boldsymbol{x}) = \tanh(\alpha \boldsymbol{x})$$, as a drop-in replacement for normalization layers in Transformers.
+                    DyT is inspired by the observation that layer normalization in Transformers often produces tanh-like, S-shaped input-output mappings.
+                    By incorporating DyT, Transformers without normalization can match or exceed the performance of their normalized counterparts, mostly without hyperparameter tuning.
+                    We validate the effectiveness of Transformers with DyT across diverse settings, ranging from recognition to generation, supervised to self-supervised learning, and computer vision to language models.
+                    These findings challenge the conventional understanding that normalization layers are indispensable in modern neural networks, and offer new insights into their role in deep networks.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Implementation Section (New) -->
+        <!-- Improved Implementation Section with Better Pseudocode -->
+<!-- Improved Implementation Section with Better Pseudocode -->
+<section id="implementation">
+    <h2 class="section-title">Implementation</h2>
+    <p>
+        Our Dynamic Tanh (DyT) implementation is remarkably simple, requiring only a few lines of code to replace normalization layers in Transformer architectures. Below is the PyTorch-style pseudocode for the DyT module:
+    </p>
+    <div class="code-block" style="background-color: #f8f9fa; border-radius: 8px; border-left: 5px solid var(--secondary-color); font-family: 'Consolas', 'Monaco', monospace; line-height: 1.6; overflow-x: auto; padding: 20px;">
+        <pre style="margin: 0; font-size: 16px;">
+<span style="color: #777777; font-style: italic;"># input x has shape [B, T, C]</span>
+<span style="color: #777777; font-style: italic;"># B: batch size, T: sequence length, C: dimension</span> 
+<span style="color: #0000FF; font-weight: bold;">class</span> <span style="color: #007700; font-weight: bold;">DyT</span>(<span style="color: #007700;">nn.Module</span>):
+    <span style="color: #0000FF; font-weight: bold;">def</span> <span style="color: #007700; font-weight: bold;">__init__</span>(<span style="color: #0000FF; font-weight: bold;">self</span>, dim, init_alpha=0.1):
+        <span style="color: #0000FF; font-weight: bold;">super</span>().<span style="color: #007700;">__init__</span>()
+        <span style="color: #0000FF; font-weight: bold;">self</span>.$\alpha$ = nn.<span style="color: #007700;">Parameter</span>(torch.<span style="color: #007700;">ones</span>(1) * init_alpha)
+        <span style="color: #0000FF; font-weight: bold;">self</span>.$\gamma$ = nn.<span style="color: #007700;">Parameter</span>(torch.<span style="color: #007700;">ones</span>(dim))
+        <span style="color: #0000FF; font-weight: bold;">self</span>.$\beta$ = nn.<span style="color: #007700;">Parameter</span>(torch.<span style="color: #007700;">zeros</span>(dim))
+        
+    <span style="color: #0000FF; font-weight: bold;">def</span> <span style="color: #007700; font-weight: bold;">forward</span>(<span style="color: #0000FF; font-weight: bold;">self</span>, x):
+        x = torch.<span style="color: #007700;">tanh</span>(<span style="color: #0000FF; font-weight: bold;">self</span>.$\alpha$ * x)
+        <span style="color: #0000FF; font-weight: bold;">return</span> <span style="color: #0000FF; font-weight: bold;">self</span>.$\gamma$ * x + <span style="color: #0000FF; font-weight: bold;">self</span>.$\beta$</pre>
+    </div>
+    
+</section>
+
+        <!-- Results Section -->
+        <section id="results">
+            <h2 class="section-title">Results</h2>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2 class="section-title">Resources</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card resources-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-file-alt me-2" style="color: var(--primary-color);"></i>Paper</h5>
+                            <p class="card-text">Download our paper for all the details about our research, methodology, and findings.</p>
+                            <a href="#" class="btn btn-sm primary-btn">Download Paper</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card resources-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fab fa-github me-2" style="color: var(--primary-color);"></i>Code</h5>
+                            <p class="card-text">Check out our repository for implementation details and code used in this research.</p>
+                            <a href="#" class="btn btn-sm secondary-btn">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card resources-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fab fa-x-twitter me-2" style="color: var(--primary-color);"></i>Summary</h5>
+                            <p class="card-text">Read a concise summary of our research findings and key points on X (formerly Twitter).</p>
+                            <a href="#" class="btn btn-sm accent-btn">View Summary</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Citations Section -->
+        <section>
+            <h2 class="section-title">How to Cite</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5>BibTeX</h5>
+                    <pre class="citation-block">
+@article{zhu2025transformers,
+  title={Transformers without Normalization},
+  author={Zhu, Jiachen and Chen, Xinlei and He, Kaiming and LeCun, Yann and Liu, Zhuang},
+  journal={arXiv preprint arXiv:2503.xxxxx},
+  year={2025}
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>Correspondence: jiachen [dot] zhu [at] nyu [dot] edu, zhuangl [at] princeton [dot] edu</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap and JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                processClass: 'span',
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
