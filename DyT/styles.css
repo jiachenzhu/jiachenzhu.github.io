@@ -383,9 +383,10 @@ h1, h2, h3, h5, h6 {
 .institution-logo-wrapper sup {
     position: absolute;
     top: -5px;
-    left: -10px;
+    left: -12px;
     font-size: 14px;
     color: var(--text-color);
+    align-items: right;
 }
 
 .institution-logo {
@@ -398,23 +399,23 @@ h1, h2, h3, h5, h6 {
     margin: 0 5px; /* Add some horizontal spacing between logos */
 }
 
-.institution-logo:hover {
-    transform: scale(1.1);
-}
+
 
 /* Override for MIT and Princeton logos */
-.mit-logo img, .princeton-logo img {
-    transform: scale(2); /* Make MIT and Princeton logos larger */
+.mit-logo img {
+    transform: scale(2.1); /* Make MIT and Princeton logos larger */
 }
 
-.mit-logo img:hover, .princeton-logo img:hover {
-    transform: scale(1.8); /* Slightly larger on hover */
+.princeton-logo img {
+    transform: scale(1.9); /* Make MIT and Princeton logos larger */
 }
+
+
 
 
 /* Alternative option - replace dots with a smaller character */
 .institution-logos .dot-separator {
     font-size: 18px; /* Even smaller size */
     margin: 0 6px;
-    align-self: center;
+    align-self: left;
 }
