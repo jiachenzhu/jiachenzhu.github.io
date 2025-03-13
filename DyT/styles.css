@@ -375,7 +375,7 @@ h1, h2, h3, h5, h6 {
 
 .institution-logo-wrapper {
     display: inline-flex;
-    align-items: center;
+    align-items: left;
     margin: 0 5px;
     position: relative;
 }
@@ -390,7 +390,7 @@ h1, h2, h3, h5, h6 {
 
 .institution-logo {
     height: auto; /* Let height adjust based on width */
-    width: 100px; /* Fixed width for all logos */
+    width: 140px; /* Fixed width for all logos */
     max-height: 40px; /* Maximum height constraint */
     object-fit: contain; /* Ensure the logo fits within dimensions without distortion */
     vertical-align: middle;
@@ -404,9 +404,17 @@ h1, h2, h3, h5, h6 {
 
 /* Override for MIT and Princeton logos */
 .mit-logo img, .princeton-logo img {
-    transform: scale(1.4); /* Make MIT and Princeton logos larger */
+    transform: scale(2); /* Make MIT and Princeton logos larger */
 }
 
 .mit-logo img:hover, .princeton-logo img:hover {
-    transform: scale(1.5); /* Slightly larger on hover */
+    transform: scale(1.8); /* Slightly larger on hover */
+}
+
+
+/* Alternative option - replace dots with a smaller character */
+.institution-logos .dot-separator {
+    font-size: 18px; /* Even smaller size */
+    margin: 0 6px;
+    align-self: center;
 }
