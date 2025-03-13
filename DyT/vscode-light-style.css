@@ -1,0 +1,236 @@
+/* VSCode-inspired light syntax highlighting theme - scoped to code blocks only */
+
+/* Base styles for syntax highlighting */
+.hljs {
+    color: #000000;
+    background: #ffffff;
+  }
+  
+  /* Syntax highlighting colors - VSCode Light Theme */
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-section,
+  .hljs-link {
+    color: #0000ff;
+  }
+  
+  .hljs-function {
+    color: #795E26;
+  }
+  
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #001080;
+  }
+  
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-builtin-name {
+    color: #0070c1;
+  }
+  
+  .hljs-string,
+  .hljs-bullet {
+    color: #a31515;
+  }
+  
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-meta {
+    color: #008000;
+  }
+  
+  .hljs-title,
+  .hljs-name {
+    color: #795E26;
+  }
+  
+  .hljs-number,
+  .hljs-tag {
+    color: #098658;
+  }
+  
+  .hljs-params {
+    color: #001080;
+  }
+  
+  .hljs-class .hljs-title {
+    color: #267f99;
+  }
+  
+  .hljs-type {
+    color: #267f99;
+  }
+  
+  .hljs-built_in {
+    color: #267f99;
+  }
+  
+  .hljs-builtin-name {
+    color: #af00db;
+  }
+  
+  .hljs-symbol,
+  .hljs-selector-id,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-template-tag,
+  .hljs-template-variable,
+  .hljs-deletion {
+    color: #098658;
+  }
+  
+  .hljs-addition,
+  .hljs-regexp {
+    color: #811f3f;
+  }
+  
+  /* Code container styling - for both implementation and citation sections */
+  .implementation-section .code-container,
+  .citation-section .code-container {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    position: relative;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .implementation-section pre#code-block-dyt,
+  .citation-section pre#code-block-citation {
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    background-color: #ffffff;
+    padding: 20px;
+    padding-top: 50px;
+    color: #000000;
+  }
+  
+  /* VSCode-like top bar */
+  .implementation-section .code-container:before,
+  .citation-section .code-container:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1;
+  }
+  
+  /* Style copy buttons to match VSCode light theme */
+  .implementation-section #copy-btn,
+  .citation-section #copy-citation-btn {
+    background-color: #e7e7e7 !important;
+    color: #333333 !important;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+    font-size: 12px;
+    padding: 4px 8px;
+    opacity: 0.9;
+    z-index: 5;
+  }
+  
+  .implementation-section #copy-btn:hover,
+  .citation-section #copy-citation-btn:hover {
+    background-color: #d7d7d7 !important;
+    opacity: 1;
+  }
+  
+  /* Style scrollbars only inside code blocks to match VSCode light theme */
+  .implementation-section pre::-webkit-scrollbar,
+  .citation-section pre::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-track,
+  .citation-section pre::-webkit-scrollbar-track {
+    background: #f3f3f3;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-thumb,
+  .citation-section pre::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-thumb:hover,
+  .citation-section pre::-webkit-scrollbar-thumb:hover {
+    background: #a9a9a9;
+  }
+  
+  /* Python-specific coloring for light theme */
+  .python .hljs-class {
+    color: #0000ff;
+  }
+  
+  .python .hljs-class .hljs-title {
+    color: #267f99;
+  }
+  
+  .python .hljs-decorator,
+  .python .hljs-operator {
+    color: #000000;
+  }
+  
+  .python .hljs-self {
+    color: #0000ff;
+  }
+  
+  .python .hljs-function .hljs-title {
+    color: #795E26;
+  }
+  
+  .python .hljs-boolean,
+  .python .hljs-number {
+    color: #098658;
+  }
+  
+  /* BibTeX-specific syntax highlighting */
+  .bibtex .hljs-string {
+    color: #a31515;
+  }
+  
+  .bibtex .hljs-title {
+    color: #795E26;
+  }
+  
+  .bibtex .hljs-variable {
+    color: #001080;
+  }
+  
+  .bibtex .hljs-keyword {
+    color: #0000ff;
+  }
+  
+  .bibtex .hljs-type {
+    color: #267f99;
+  }
+  
+  /* Make sure code block text is readable */
+  .implementation-section pre code,
+  .citation-section pre code {
+    color: #000000 !important;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .bibtex .hljs-string:contains("journal") {
+    color: inherit !important; /* Reset to default text color */
+  }
+  
+  /* Alternative approach using a class added via JavaScript */
+  .journal-field {
+    color: #000000 !important; /* Force black color for journal field */
+  }
+  
+  /* Another approach: target specific lines with journal field by modifying the HTML */
+  .citation-section pre code .journal-line {
+    color: #000000 !important;
+  }

@@ -1,0 +1,412 @@
+/* Academic Theme Variables */
+:root {
+    --primary-color: #0B1F33;
+    --secondary-color: #8B4513;
+    --accent-color: #1976D1;
+    --light-color: #FFFFF0;
+    --dark-color: #483D8B;
+    --text-color: #333333;
+    --background-color: #FFFFF8;
+    --card-background: #FFFFF8;
+    --header-gradient: none; /* Changed from gradient to none */
+    --footer-gradient: linear-gradient(135deg, #0B1F33 0%, #483D8B 100%);
+    --nav-gradient: linear-gradient(90deg, #483D8B 0%, #0B1F33 100%);
+    --header-text-color: #333333; /* Changed from white to dark text */
+    --footer-text-color: #ffffff;
+    --font-family: 'Avenir Next', 'Nunito', 'Avenir', 'Segoe UI', sans-serif; /* Default font changed to Avenir Next */
+}
+
+/* Font Settings */
+body {
+    font-family: var(--font-family);
+    line-height: 1.8;
+    font-size: 26px; /* Increased from 22px to 26px */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Element Styles */
+.header-section {
+    background: var(--header-gradient);
+    padding: 60px 0 40px 0; /* Reduced from 80px 0 */
+    margin-bottom: 15px; /* Reduced from 30px */
+    color: var(--header-text-color);
+    box-shadow: none; /* Removed shadow */
+}
+
+.navbar {
+    background: var(--nav-gradient);
+}
+
+/* Author styles */
+.author-line {
+    font-size: 1.2rem; /* Slightly increased while keeping on one line */
+    font-weight: 600;
+    margin: 10px 0;
+    line-height: 1.5;
+    color: var(--text-color); /* Ensuring author line text is visible */
+    white-space: nowrap; /* Prevent line breaks */
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.author-line span {
+    display: inline-flex;
+    white-space: nowrap;
+}
+
+.project-lead-line {
+    font-size: 1.3rem; /* Increased from 1.25rem */
+    color: rgba(51, 51, 51, 0.9); /* Changed to darker color for better visibility */
+    margin-bottom: 10px;
+}
+
+.institution-line {
+    font-size: 1.3rem; /* Increased from 1.25rem */
+    color: rgba(51, 51, 51, 0.9); /* Changed to darker color for better visibility */
+    margin-bottom: 15px;
+}
+
+.author-link {
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 3px 5px;
+    border-radius: 4px;
+    color: var(--primary-color); /* Changed to primary color for better visibility */
+}
+
+.author-link:hover {
+    background-color: rgba(11, 31, 51, 0.1); /* Changed to match primary color */
+    text-decoration: underline;
+}
+
+/* Paper title */
+.paper-title {
+    font-weight: 700;
+    font-size: 48px; /* Increased from 42px to 48px */
+    margin-bottom: 20px;
+    text-shadow: none; /* Removed text shadow */
+    color: var(--primary-color); /* Added primary color for title */
+}
+
+/* Abstract */
+.abstract {
+    background-color: var(--light-color);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 15px 0 30px 0;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-size: 26px; /* Updated to match body font size */
+}
+
+#abstract .section-title {
+    margin-bottom: 15px;
+}
+
+/* Section title */
+.section-title {
+    margin: 40px 0 20px 0;
+    font-weight: 600;
+    font-size: 38px; /* Increased from 34px to 38px */
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    text-align: center; /* Center the title text */
+    border-bottom: none;
+}
+
+/* Full-width bottom border for section titles */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 100%; /* Full width line */
+    height: 2px;
+    background-color: var(--secondary-color);
+    margin: 15px 0 0 0; /* Remove auto margins, add top margin only */
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background: var(--footer-gradient);
+    color: var(--footer-text-color);
+}
+
+.resources-card {
+    height: 100%;
+    transition: transform 0.3s ease;
+    border-top: 4px solid var(--secondary-color);
+    background-color: var(--card-background);
+}
+
+.resources-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: none;
+    background-color: var(--card-background);
+}
+
+/* Button styles */
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.accent-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn {
+    font-size: 22px; /* Increased from 20px */
+    padding: 8px 16px;
+}
+
+/* Badge styles */
+.theme-badge {
+    background-color: var(--primary-color);
+}
+
+.theme-badge-alt {
+    background-color: var(--secondary-color);
+}
+
+.theme-badge-accent {
+    background-color: var(--accent-color);
+}
+
+.theme-badge-dark {
+    background-color: var(--dark-color);
+}
+
+.badge {
+    font-size: 18px; /* Increased from 16px */
+    padding: 6px 10px;
+}
+
+.citation-block {
+    background-color: var(--light-color);
+    border-left: 4px solid var(--secondary-color);
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 22px; /* Increased from 18px */
+    line-height: 1.6;
+}
+
+/* Figure section styles */
+.figure-section {
+    margin: 20px 0; /* Reduced from 40px 0 */
+    text-align: center;
+}
+
+.figure-container {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.figure-caption {
+    margin-top: 15px;
+    font-size: 1.4rem; /* Increased from 1.3rem */
+    color: var(--text-color);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation link size */
+.navbar .nav-link {
+    font-size: 1.4rem; /* Increased from 1.3rem */
+    padding: 0.7rem 1rem;
+}
+
+/* Make secondary headings larger and centered */
+h4 {
+    font-size: 32px; /* Increased from 28px to 32px */
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: center; /* Center h4 headings */
+}
+
+/* Center other headings that might exist */
+h1, h2, h3, h5, h6 {
+    text-align: center;
+}
+
+/* Increase card title and text size */
+.card-title {
+    font-size: 30px; /* Increased from 26px to 30px */
+    text-align: center;
+}
+
+.card-text {
+    font-size: 26px; /* Increased to match body text */
+}
+
+/* Code block styles - default styling for non-highlighted code */
+.code-block {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid var(--secondary-color);
+    font-family: 'Consolas', 'Monaco', monospace;
+    overflow-x: auto;
+    font-size: 18px; /* Increased from 16px */
+    line-height: 1.5;
+}
+
+.code-block pre {
+    margin: 0;
+}
+
+.code-comment {
+    color: #777777;
+}
+
+.code-keyword {
+    color: #0000FF;
+}
+
+.code-function {
+    color: #007700;
+}
+
+.code-symbol {
+    color: #8B4513;
+    font-style: italic;
+}
+
+.math-code {
+    font-style: normal;
+    color: #8B4513;
+    display: inline-block;
+    vertical-align: baseline;
+    font-family: 'MJXc-TeX-math-I', 'Times New Roman', serif;
+}
+
+/* Code block styles for non-highlighted code */
+.code-block {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid var(--secondary-color);
+    font-family: 'Consolas', 'Monaco', monospace;
+    overflow-x: auto;
+    font-size: 20px; /* Increased from 18px */
+    line-height: 1.5;
+    white-space: pre;
+}
+
+.code-block code {
+    color: #333;
+    display: block;
+}
+
+/* Default code container styling (for non-VSCode-highlighted code) */
+.code-container {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Default copy button styling */
+#copy-btn {
+    transition: all 0.2s ease;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#copy-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Syntax highlighting for standard code (non-VSCode) */
+.code-block .comment { color: #777777; }
+.code-block .keyword { color: #0000FF; }
+.code-block .function { color: #007700; }
+.code-block .parameter { color: #8B4513; }
+
+/* Fix for Bootstrap classes that might still use light text */
+.text-light, .mx-2.text-light {
+    color: var(--text-color) !important; /* Override Bootstrap's text-light class */
+}
+
+/* Reduce spacing between author names */
+.author-line .mx-2 {
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+}
+
+.col-lg-8 {
+    max-width: 100%; /* Allow the column to expand more if needed */
+}
+
+/* Institution Logo Styles */
+.institution-logos {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+/* Add this rule to ensure logos are aligned properly */
+.institution-logos * {
+    display: flex;
+    align-items: center;
+}
+
+.institution-logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 5px;
+    position: relative;
+}
+
+.institution-logo-wrapper sup {
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.institution-logo {
+    height: auto; /* Let height adjust based on width */
+    width: 100px; /* Fixed width for all logos */
+    max-height: 40px; /* Maximum height constraint */
+    object-fit: contain; /* Ensure the logo fits within dimensions without distortion */
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+    margin: 0 5px; /* Add some horizontal spacing between logos */
+}
+
+.institution-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Override for MIT and Princeton logos */
+.mit-logo img, .princeton-logo img {
+    transform: scale(1.4); /* Make MIT and Princeton logos larger */
+}
+
+.mit-logo img:hover, .princeton-logo img:hover {
+    transform: scale(1.5); /* Slightly larger on hover */
+}

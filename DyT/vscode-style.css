@@ -1,0 +1,190 @@
+/* VSCode-inspired syntax highlighting theme - scoped to code blocks only */
+
+/* Base styles for syntax highlighting */
+.hljs {
+    color: #d4d4d4;
+    background: #1e1e1e;
+  }
+  
+  /* Syntax highlighting colors */
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-section,
+  .hljs-link {
+    color: #569cd6;
+  }
+  
+  .hljs-function {
+    color: #dcdcaa;
+  }
+  
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #9cdcfe;
+  }
+  
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-builtin-name {
+    color: #9cdcfe;
+  }
+  
+  .hljs-string,
+  .hljs-bullet {
+    color: #ce9178;
+  }
+  
+  .hljs-comment,
+  .hljs-quote,
+  .hljs-meta {
+    color: #6a9955;
+  }
+  
+  .hljs-title,
+  .hljs-name {
+    color: #dcdcaa;
+  }
+  
+  .hljs-number,
+  .hljs-tag {
+    color: #b5cea8;
+  }
+  
+  .hljs-params {
+    color: #9cdcfe;
+  }
+  
+  .hljs-class .hljs-title {
+    color: #4ec9b0;
+  }
+  
+  .hljs-type {
+    color: #4ec9b0;
+  }
+  
+  .hljs-built_in {
+    color: #4ec9b0;
+  }
+  
+  .hljs-builtin-name {
+    color: #c586c0;
+  }
+  
+  .hljs-symbol,
+  .hljs-selector-id,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-template-tag,
+  .hljs-template-variable,
+  .hljs-deletion {
+    color: #b5cea8;
+  }
+  
+  .hljs-addition,
+  .hljs-regexp {
+    color: #d16969;
+  }
+  
+  /* Code container styling - only for implementation section */
+  .implementation-section .code-container {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: 20px 0;
+    position: relative;
+  }
+  
+  .implementation-section pre#code-block-dyt {
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    background-color: #1e1e1e;
+    padding: 20px;
+    padding-top: 50px;
+    color: #d4d4d4;
+  }
+  
+  /* VSCode-like top bar */
+  .implementation-section .code-container:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #252526;
+    border-bottom: 1px solid #333;
+    z-index: 1;
+  }
+  
+  /* Style copy button to match VSCode theme */
+  .implementation-section #copy-btn {
+    background-color: #3c3c3c !important;
+    color: #cccccc !important;
+    border: none;
+    border-radius: 2px;
+    font-size: 12px;
+    padding: 4px 8px;
+    opacity: 0.7;
+    z-index: 5;
+  }
+  
+  .implementation-section #copy-btn:hover {
+    background-color: #505050 !important;
+    opacity: 1;
+  }
+  
+  /* Style scrollbars only inside code blocks */
+  .implementation-section pre::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 3px;
+  }
+  
+  .implementation-section pre::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+  }
+  
+  /* Python-specific coloring */
+  .python .hljs-class {
+    color: #569cd6;
+  }
+  
+  .python .hljs-class .hljs-title {
+    color: #4ec9b0;
+  }
+  
+  .python .hljs-decorator,
+  .python .hljs-operator {
+    color: #d4d4d4;
+  }
+  
+  .python .hljs-self {
+    color: #569cd6;
+  }
+  
+  .python .hljs-function .hljs-title {
+    color: #dcdcaa;
+  }
+  
+  .python .hljs-boolean,
+  .python .hljs-number {
+    color: #b5cea8;
+  }
+  
+  /* Make sure code block text is readable */
+  .implementation-section pre code {
+    color: #d4d4d4 !important;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 16px;
+    line-height: 1.5;
+  }
