@@ -2,7 +2,7 @@
 
 ### About Me (Jiachen Zhu / 朱家晨）
 I am a fifth-year PhD candidate in Computer Science at NYU Courant, advised by [Yann LeCun](http://yann.lecun.com/). \
-I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Liu Zhuang](https://liuzhuang13.github.io/).
+I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Zhuang Liu](https://liuzhuang13.github.io/).
 
 ### Job Search
 **I am actively seeking full-time research positions in vision models or vision-language models starting in late 2025. If you think my background aligns with your team's goals, please reach out!**
