@@ -1,6 +1,6 @@
 <img src="yann_computer.jpg" data-canonical-src="yann_computer.jpg" width="189" height="252" />
 
-### About Me (朱家晨）
+### About Me (Jiachen Zhu / 朱家晨）
 I am a fifth-year PhD candidate in Computer Science at NYU Courant, advised by [Yann LeCun](http://yann.lecun.com/). \
 I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Liu Zhuang](https://liuzhuang13.github.io/).
 
