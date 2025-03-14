@@ -419,3 +419,176 @@ h1, h2, h3, h5, h6 {
     margin: 0 6px;
     align-self: left;
 }
+
+/* Add this to your styles.css file */
+
+/* Base font size - set on root element using rem */
+:root {
+    --base-font-size: 16px;
+    --scale-factor: 1;
+}
+
+/* Set the base size */
+html {
+    font-size: var(--base-font-size);
+}
+
+/* Body using rem units for easier scaling */
+body {
+    font-family: var(--font-family);
+    line-height: 1.8;
+    font-size: calc(1.625rem * var(--scale-factor)); /* 26px at default scale */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+/* Convert all other fixed pixel sizes to rem */
+.paper-title {
+    font-weight: 700;
+    font-size: calc(3rem * var(--scale-factor)); /* 48px at default scale */
+    margin-bottom: 1.25rem;
+    text-shadow: none;
+    color: var(--primary-color);
+}
+
+.author-line {
+    font-size: calc(1.2rem * var(--scale-factor));
+    font-weight: 600;
+    margin: 0.625rem 0;
+    line-height: 1.5;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    align-items: center;
+}
+
+.section-title {
+    margin: 2.5rem 0 1.25rem 0;
+    font-weight: 600;
+    font-size: calc(2.375rem * var(--scale-factor)); /* 38px at default scale */
+    color: var(--primary-color);
+    padding-bottom: 0.625rem;
+    text-align: center;
+    border-bottom: none;
+}
+
+h4 {
+    font-size: calc(2rem * var(--scale-factor)); /* 32px at default scale */
+    margin-top: 1.5625rem;
+    margin-bottom: 0.9375rem;
+    text-align: center;
+}
+
+.card-title {
+    font-size: calc(1.875rem * var(--scale-factor)); /* 30px at default scale */
+    text-align: center;
+}
+
+.card-text {
+    font-size: calc(1.625rem * var(--scale-factor)); /* 26px at default scale */
+}
+
+.btn {
+    font-size: calc(1.375rem * var(--scale-factor)); /* 22px at default scale */
+    padding: 0.5rem 1rem;
+}
+
+.figure-caption {
+    margin-top: 0.9375rem;
+    font-size: calc(1.4rem * var(--scale-factor));
+    color: var(--text-color);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Code blocks */
+.code-block {
+    font-size: calc(1.25rem * var(--scale-factor)); /* 20px at default scale */
+    line-height: 1.5;
+}
+
+.implementation-section pre code,
+.citation-section pre code {
+    font-size: calc(1rem * var(--scale-factor)); /* 16px at default scale */
+    line-height: 1.5;
+}
+
+/* Responsive font scaling based on viewport width */
+@media (max-width: 1400px) {
+    :root {
+        --scale-factor: 0.9;
+    }
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --scale-factor: 0.85;
+    }
+    
+    .author-line {
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --scale-factor: 0.8;
+    }
+    
+    .institution-logo {
+        width: 120px;
+        max-height: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --scale-factor: 0.75;
+    }
+    
+    .institution-logos {
+        flex-wrap: wrap;
+    }
+    
+    .institution-logo {
+        width: 100px;
+        max-height: 30px;
+        margin-bottom: 0.3125rem;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --scale-factor: 0.7;
+    }
+    
+    .author-line {
+        font-size: calc(1rem * var(--scale-factor));
+    }
+    
+    .paper-title {
+        font-size: calc(2.5rem * var(--scale-factor));
+    }
+}
+
+/* Special handling for logos on smaller screens */
+@media (max-width: 480px) {
+    .institution-logos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .dot-separator {
+        display: none;
+    }
+    
+    .institution-logo-wrapper {
+        justify-content: center;
+    }
+}
