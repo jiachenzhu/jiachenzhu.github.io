@@ -5,7 +5,7 @@ I am a fifth-year PhD candidate in Computer Science at NYU Courant, advised by [
 I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Liu Zhuang](https://liuzhuang13.github.io/).
 
 ### Job Search
-I am actively seeking full-time research positions in vision models or vision-language models starting in late 2025. If you think my background aligns with your team's goals, please reach out!
+**I am actively seeking full-time research positions in vision models or vision-language models starting in late 2025. If you think my background aligns with your team's goals, please reach out!**
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - Now
