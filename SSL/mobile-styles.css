@@ -1,14 +1,50 @@
 /* 
- * Mobile-Only Styles
- * This stylesheet only contains styles that activate on mobile devices
- * Desktop appearance remains completely unchanged
+ * Enhanced Mobile Styles
+ * Fixes width issues and improves mobile experience
  */
 
-/* Only apply these styles on screens 768px and smaller */
+/* ===== Mobile Width Fix ===== */
+/* This is the critical fix for the narrow mobile layout */
 @media (max-width: 768px) {
-    /* ===== Header Section Improvements ===== */
+    /* Remove the conflicting width constraints on containers */
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-xxl {
+      max-width: 100% !important; 
+      width: 100% !important;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Update the col-lg-11 mx-auto that was restricting width */
+    .col-lg-11.mx-auto {
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Fix any row negative margins that might be causing overflow */
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+    
+    /* Fix any potential horizontal overflow issues */
+    body, html {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* ===== Header Section Improvements ===== */
+  @media (max-width: 768px) {
     .paper-title {
-      font-size: 2rem; /* Slightly smaller on mobile */
+      font-size: 1.8rem; /* Smaller on mobile */
       line-height: 1.2;
     }
     
@@ -40,8 +76,10 @@
       width: 80%;
       max-width: 250px;
     }
-    
-    /* ===== TLDR Section Improvements ===== */
+  }
+  
+  /* ===== TLDR Section Improvements ===== */
+  @media (max-width: 768px) {
     .tldr-box {
       padding: 20px !important; /* More compact padding */
     }
@@ -56,8 +94,8 @@
     }
     
     .key-findings .row {
-      margin-left: -10px;
-      margin-right: -10px;
+      margin-left: 0;
+      margin-right: 0;
     }
     
     .finding-card {
@@ -65,69 +103,80 @@
       padding: 15px !important;
       margin-bottom: 15px;
     }
-    
-    .finding-card h5 {
-      font-size: 1.1rem !important;
+  }
+  
+  /* ===== Research Questions & Analysis Section ===== */
+  @media (max-width: 768px) {
+    /* Adjust navigation pills for mobile */
+    .custom-nav-pills {
+      flex-direction: column;
     }
     
-    .finding-card p {
-      font-size: 0.95rem !important;
+    .custom-nav-pills .nav-link {
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+      display: block;
     }
     
-    /* ===== Approach Section Improvements ===== */
-    #approach .card {
-      margin-bottom: 15px;
-    }
-    
-    #approach .card-body {
+    /* Fix research questions */
+    .research-question {
       padding: 15px !important;
     }
     
-    /* Make the icon circles smaller on mobile */
-    #approach [style*="width: 70px; height: 70px;"] {
-      width: 50px !important;
-      height: 50px !important;
-      margin-bottom: 15px !important;
+    .question-header {
+      align-items: flex-start;
     }
     
-    #approach .card-title {
+    .question-title {
       font-size: 1.2rem !important;
     }
     
-    /* ===== Scaling Experiments Improvements ===== */
-    .scaling-card {
-      padding: 15px !important;
-    }
-    
-    .scaling-title {
-      font-size: 1.3rem !important;
-      margin-bottom: 15px !important;
-    }
-    
-    /* Adjust progress bars for better mobile display */
-    .progress {
-      height: 12px !important;
-    }
-    
-    /* Add horizontal scrolling to avoid breaking layout */
+    /* Fix the charts and visualizations */
     .figure-container {
+      width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 15px !important;
     }
     
-    /* Ensure all images are responsive */
     .figure-container img {
       max-width: 100%;
       height: auto;
     }
     
-    .figure-caption {
-      font-size: 0.85rem !important;
-      padding: 0 5px;
+    /* Ensure tables aren't cut off */
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* ===== Scaling Experiments Improvements ===== */
+  @media (max-width: 768px) {
+    .scaling-card {
+      padding: 15px !important;
+      margin-bottom: 15px;
     }
     
-    /* Make params and values more readable on mobile */
+    .scaling-title {
+      font-size: 1.3rem !important;
+    }
+    
+    /* Make progress bars more visible */
+    .progress {
+      height: 14px !important;
+    }
+    
+    /* Fix the stacking of columns */
+    .col-md-5, .col-md-7 {
+      width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    
+    /* Fix element width in the charts */
     [style*="width: 80px; text-align: left;"] {
       width: 70px !important;
       font-size: 0.85rem !important;
@@ -137,76 +186,10 @@
       width: 45px !important;
       font-size: 0.85rem !important;
     }
-    
-    /* ===== Research Questions Improvements ===== */
-    .research-question {
-      padding: 20px !important;
-      margin: 20px 0 !important;
-    }
-    
-    .question-number {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 1rem !important;
-    }
-    
-    .question-title {
-      font-size: 1.2rem !important;
-      line-height: 1.3 !important;
-    }
-    
-    /* Better handle collapse/expand icons */
-    .question-header .ms-auto {
-      margin-left: auto !important;
-    }
-    
-    .question-header .fas {
-      font-size: 1rem !important;
-    }
-    
-    /* ===== Table Improvements ===== */
-    /* Make tables scrollable horizontally without breaking layout */
-    .table-responsive {
-      display: block;
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .data-table {
-      font-size: 0.85rem !important;
-    }
-    
-    .data-table th,
-    .data-table td {
-      padding: 6px 8px !important;
-      white-space: nowrap;
-    }
-    
-    /* ===== Sample Image Container Fixes ===== */
-    /* Fix the image containers in question 4 */
-    #question4 [style*="width: 225px; height: 225px;"] {
-      width: 100% !important;
-      height: auto !important;
-      margin-bottom: 15px !important;
-    }
-    
-    #question4 [style*="width: 300px; height: 225px;"] {
-      width: 100% !important;
-      height: auto !important;
-    }
-    
-    /* ===== Key Findings Improvements ===== */
-    #conclusions .d-flex {
-      flex-wrap: wrap !important;
-      align-items: flex-start !important;
-    }
-    
-    #conclusions .badge {
-      margin-bottom: 10px !important;
-    }
-    
-    /* ===== FAQ Improvements ===== */
+  }
+  
+  /* ===== FAQ Section Improvements ===== */
+  @media (max-width: 768px) {
     .accordion-button {
       padding: 15px !important;
       font-size: 1rem !important;
@@ -217,36 +200,35 @@
       padding: 15px !important;
       font-size: 0.95rem !important;
     }
-    
-    /* ===== Resources Section ===== */
-    #resources .resources-card {
-      margin-bottom: 20px !important;
+  }
+  
+  /* ===== Better Touch Targets for Mobile ===== */
+  @media (max-width: 768px) {
+    a, button, .btn, .nav-link, .accordion-button {
+      min-height: 44px;  /* Apple's recommended minimum touch target size */
+      display: flex;
+      align-items: center;
     }
     
-    #resources .card-body {
-      padding: 20px !important;
+    /* Ensure the figures in Question 4 display correctly */
+    #question4 [style*="width: 225px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 225px;
+      margin: 0 auto 15px auto !important;
     }
     
-    /* ===== Citation Section ===== */
-    #citation pre {
-      font-size: 0.85rem !important;
-      white-space: pre-wrap !important;
-      word-break: break-word !important;
-      padding: 15px !important;
-    }
-    
-    /* ===== Footer Improvements ===== */
-    .footer {
-      padding: 30px 0 !important;
-      margin-top: 60px !important;
-      text-align: center !important;
+    #question4 [style*="width: 300px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
     }
   }
   
   /* Extra small devices (phones, 576px and down) */
   @media (max-width: 576px) {
     .paper-title {
-      font-size: 1.8rem !important;
+      font-size: 1.6rem !important;
     }
     
     .equal-contribution {
@@ -257,22 +239,16 @@
       display: none !important; /* Hide the separator on very small screens */
     }
     
-    /* Ensure touch targets are at least 44px high for accessibility */
-    .btn, 
-    .nav-link, 
-    .accordion-button {
-      min-height: 44px !important;
-      display: flex !important;
-      align-items: center !important;
-    }
-    
-    /* Fix progress bars on very small screens */
-    .progress {
-      height: 10px !important;
-    }
-    
     /* Further improve tables on very small screens */
     .data-table {
       font-size: 0.8rem !important;
+    }
+    
+    /* Shrink content to fit smaller screens */
+    #citation pre {
+      font-size: 0.85rem !important;
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      padding: 15px !important;
     }
   }
