@@ -1,0 +1,95 @@
+/* Scrolling of sections */
+/* Make sure section IDs have appropriate spacing */
+section[id],
+div[id],
+h2[id],
+h3[id] {
+scroll-margin-top: 50px; /* Adjust based on your navbar height */
+}
+
+/* Vibrant Modern Color Scheme */
+:root {
+    /* Modern color palette */
+    --primary-color: #4F46E5;       /* Electric Indigo */
+    --secondary-color: #059669;     /* Forest Green */
+    --accent-color: #FBBF24;        /* Energetic Yellow */
+    --light-color: #F9FAFB;         /* Cloud White */
+    --dark-color: #0F172A;          /* Midnight Navy */
+    --text-color: #334155;          /* Slate Gray */
+    --background-color: #FFFFFF;
+    --card-background: #FFFFFF;
+    
+    /* Simplified gradients */
+    --header-gradient: linear-gradient(to bottom, #F9FAFB, #FFFFFF);
+    --footer-gradient: linear-gradient(to right, #0F172A, #1E293B);
+    --nav-gradient: var(--primary-color);  /* Solid color instead of gradient */
+    
+    --header-text-color: #0F172A;
+    --footer-text-color: #ffffff;
+    --font-family: 'Nunito', 'Avenir Next', 'Segoe UI', sans-serif;
+    --link-color: var(--primary-color);
+    
+    /* Additional modern variables */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    --box-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* Button hover states */
+.primary-btn:hover {
+    background-color: #4338CA; /* Darker indigo */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.secondary-btn:hover {
+    background-color: #047857; /* Darker green */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.accent-btn:hover {
+    background-color: #F59E0B; /* Darker yellow */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+/* Progress bar colors */
+.progress-bar[style*="background-color: #93c5fd"] {
+    background-color: #C7D2FE !important; /* Lighter indigo */
+}
+
+.progress-bar[style*="background-color: #60a5fa"] {
+    background-color: #A5B4FC !important; /* Light indigo */
+}
+
+.progress-bar[style*="background-color: #3b82f6"] {
+    background-color: #818CF8 !important; /* Medium indigo */
+}
+
+.progress-bar[style*="background-color: #2563eb"] {
+    background-color: var(--primary-color) !important; /* Main indigo */
+}
+
+/* Amber progress bars updated to energetic yellow tones */
+.progress-bar[style*="background-color: #fdba74"] {
+    background-color: #FDE68A !important; /* Lighter yellow */
+}
+
+.progress-bar[style*="background-color: #fb923c"] {
+    background-color: #FCD34D !important; /* Light yellow */
+}
+
+.progress-bar[style*="background-color: #f97316"] {
+    background-color: #FBBF24 !important; /* Medium yellow */
+}
+
+.progress-bar[style*="background-color: #ea580c"] {
+    background-color: #F59E0B !important; /* Dark yellow */
+}

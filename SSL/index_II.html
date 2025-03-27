@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-SSL: Scaling Language-Free Visual Representation Learning</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts - Nunito as Avenir Next alternative -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Theme Variables */
+        :root {
+            --primary-color: #2563EB;
+            --secondary-color: #5A7302;
+            --accent-color: #FF9E1B;
+            --light-color: #FFFFFF;
+            --dark-color: #2C3E50;
+            --text-color: #333333;
+            --background-color: #FFFFFF;
+            --card-background: #FFFFFF;
+            --header-gradient: linear-gradient(135deg, #EBF4FF 0%, #FFFFFF 100%);
+            --footer-gradient: linear-gradient(135deg, #003D7C 0%, #2C3E50 100%);
+            --nav-gradient: linear-gradient(90deg, #2C3E50 0%, #2563EB 100%);
+            --header-text-color: #333333;
+            --footer-text-color: #ffffff;
+            --font-family: 'Nunito', 'Avenir Next', 'Segoe UI', sans-serif;
+            --link-color: #2563EB;
+        }
+
+        /* Font Settings */
+        body {
+            font-family: var(--font-family);
+            line-height: 1.8;
+            font-size: 18px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        /* Element Styles */
+        .header-section {
+            background: var(--header-gradient);
+            padding: 90px 0 70px 0;
+            margin-bottom: 30px;
+            color: var(--header-text-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: rotate(-30deg);
+            z-index: 0;
+        }
+
+        .navbar {
+            background: var(--nav-gradient);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar .nav-link {
+            font-weight: 600;
+            padding: 10px 15px;
+            margin: 0 2px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .navbar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Paper title */
+        .paper-title {
+            font-weight: 700;
+            font-size: 46px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .paper-subtitle {
+            font-weight: 400;
+            font-size: 26px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Author styles */
+        .author-line {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 10px 0;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-link {
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 3px 5px;
+            border-radius: 4px;
+            color: var(--link-color);
+        }
+
+        .author-link:hover {
+            background-color: rgba(0, 61, 124, 0.1);
+            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        /* Key Points Card */
+        .key-point-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .key-point-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .key-point-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .key-point-card .card-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .key-point-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        /* Abstract */
+        .abstract {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Section title */
+        .section-title {
+            margin: 60px 0 30px 0;
+            font-weight: 600;
+            font-size: 34px;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            text-align: center;
+            border-bottom: none;
+            position: relative;
+        }
+
+        /* Full-width bottom border for section titles */
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0 auto;
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding: 50px 0;
+            background: var(--footer-gradient);
+            color: var(--footer-text-color);
+        }
+
+        /* Figure section styles */
+        .figure-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .figure-container {
+            background-color: var(--card-background);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .figure-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .figure-caption {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Resources card */
+        .resources-card {
+            height: 100%;
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: none;
+        }
+
+        .resources-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Button styles */
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+            padding: 12px 24px;
+            font-weight: 600;
+        }
+        
+        .primary-btn:hover {
+            background-color: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+            padding: 12px 24px;
+            font-weight: 600;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #4d6202;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .accent-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+            padding: 12px 24px;
+            font-weight: 600;
+        }
+        
+        .accent-btn:hover {
+            background-color: #e08a0b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        
+        /* Result card */
+        .result-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .result-card h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Equal contribution footnote */
+        .equal-contribution {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 5px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Institution logos */
+        .institution-logos {
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .institution-logo-wrapper {
+            display: inline-flex;
+            align-items: center;
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .institution-logo {
+            height: 40px;
+            width: auto;
+            vertical-align: middle;
+            transition: transform 0.2s ease;
+            margin: 10px;
+        }
+
+        .institution-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Highlight box for key findings */
+        .highlight-box {
+            background-color: rgba(37, 99, 235, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Research question styles */
+        .research-question {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .research-question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 15px;
+        }
+        
+        .question-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(90, 115, 2, 0.2);
+        }
+        
+        .question-title {
+            color: var(--dark-color);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 0;
+            line-height: 1.3;
+            flex: 1;
+        }
+        
+        .question-answer {
+            margin-top: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* Chart styles */
+        .chart-container {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .chart-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Scaling comparison */
+        .scaling-comparison {
+            display: flex;
+            margin: 40px 0;
+            align-items: stretch;
+        }
+        
+        .scaling-card {
+            flex: 1;
+            background: var(--light-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 0 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scaling-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+        
+        .scaling-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        
+        .model-scaling::before {
+            background: var(--primary-color);
+        }
+        
+        .data-scaling::before {
+            background: var(--accent-color);
+        }
+        
+        .scaling-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .scaling-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .model-scaling .scaling-icon {
+            color: var(--primary-color);
+        }
+        
+        .data-scaling .scaling-icon {
+            color: var(--accent-color);
+        }
+
+        /* Findings list */
+        .findings-list {
+            margin: 30px 0;
+            padding-left: 0;
+        }
+        
+        .findings-list .finding-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 35px;
+            list-style-type: none;
+        }
+        
+        .findings-list .finding-item::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Custom table styling */
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 30px 0;
+        }
+        
+        .custom-table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .custom-table tbody tr:nth-child(even) {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .custom-table tbody td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .custom-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Nav pills */
+        .custom-nav-pills {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .custom-nav-pills .nav-link {
+            background: white;
+            color: var(--dark-color);
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .custom-nav-pills .nav-link:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .custom-nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Progress bars */
+        .progress {
+            height: 15px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+            background-color: #f1f5f9;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            border-radius: 50px;
+        }
+        
+        /* FAQ accordion */
+        .accordion-item {
+            border: none;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .accordion-button {
+            font-weight: 600;
+            padding: 20px;
+            background-color: white;
+            color: var(--dark-color);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .accordion-body {
+            padding: 20px;
+            background-color: white;
+        }
+
+        /* Data table styling */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 25px 0;
+            background-color: var(--card-background);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            padding: 12px 10px;
+        }
+        
+        .data-table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #edf2f7;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: rgba(37, 99, 235, 0.03);
+        }
+        
+        .data-table .header-row {
+            background-color: rgba(37, 99, 235, 0.1) !important;
+            font-weight: 600;
+        }
+
+        .data-table .model-cell {
+            text-align: left;
+            font-weight: 600;
+            min-width: 160px;
+        }
+        
+        .data-table .highlight-cell {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .data-table .improvement-positive {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .data-table .improvement-negative {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .data-table caption {
+            caption-side: bottom;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .paper-title {
+                font-size: 32px;
+            }
+            
+            .paper-subtitle {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .scaling-comparison {
+                flex-direction: column;
+            }
+            
+            .scaling-card {
+                margin: 10px 0;
+            }
+            
+            .custom-nav-pills {
+                flex-direction: column;
+            }
+            
+            .custom-nav-pills .nav-link {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .data-table {
+                font-size: 0.85rem;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Web-SSL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header-section" id="overview">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h1 class="paper-title">Scaling Language-Free Visual Representation Learning</h1>
+                    <h2 class="paper-subtitle">Effective visual features without language supervision</h2>
+                    <div class="author-line">
+                        <span><a href="http://davidfan.io/" class="author-link">David Fan<sup>1,*</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://tsb0601.github.io/" class="author-link">Shengbang Tong<sup>1,2,*</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://jiachenzhu.github.io/" class="author-link">Jiachen Zhu<sup>1,2</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://koustuvsinha.com/" class="author-link">Koustuv Sinha<sup>1</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://liuzhuang13.github.io/" class="author-link">Zhuang Liu<sup>1</sup></a></span>
+                    </div>
+                    <div class="author-line">
+                        <span><a href="https://xinleic.xyz/" class="author-link">Xinlei Chen<sup>1</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://scholar.google.ca/citations?user=cMPKe9UAAAAJ&hl=en" class="author-link">Michael Rabbat<sup>1</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://scholar.google.com/citations?user=euUV4iUAAAAJ&hl=en" class="author-link">Nicolas Ballas<sup>1</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://scholar.google.com/citations?user=WLN3QrAAAAAJ&hl=en" class="author-link">Yann LeCun<sup>1,2</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://www.amirbar.net/" class="author-link">Amir Bar<sup>1,†</sup></a></span>
+                        <!-- <span class="mx-2 text-light">•</span> -->
+                        <span><a href="https://www.sainingxie.com/" class="author-link">Saining Xie<sup>2,†</sup></a></span>
+                    </div>
+                    <div class="equal-contribution mt-2">
+                        <span><sup>*</sup> Equal contribution</span>
+                        <span class="mx-2">|</span>
+                        <span><sup>†</sup> Equal advising</span>
+                    </div>
+                    <div class="institution-logos mt-4">
+                        <div class="institution-logo-wrapper">
+                            <img src="assets/logos/meta.png" alt="FAIR, Meta" class="institution-logo">
+                            <sup>1</sup>
+                        </div>
+                        <div class="institution-logo-wrapper">
+                            <img src="assets/logos/nyu.png" alt="New York University" class="institution-logo">
+                            <sup>2</sup>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="btn primary-btn me-2"><i class="fas fa-file-alt me-2"></i>Paper</a>
+                        <a href="#" class="btn secondary-btn me-2"><i class="fab fa-github me-2"></i>Code</a>
+                        <a href="#" class="btn accent-btn"><i class="fas fa-weight-hanging me-2"></i>Model Weights</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Key Visual -->
+        <section id="key-visual" class="figure-section">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="figure-container">
+                        <img src="assets/figures/fig1_simple.png" alt="Web-SSL Scaling Performance" class="img-fluid">
+                        <div class="figure-caption">
+                            <strong>Figure 1:</strong> Web-SSL shows strong scaling behavior with model size and training data, demonstrating that visual self-supervised learning can excel at diverse multimodal tasks including OCR & Chart understanding — without using any language supervision.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abstract -->
+        <section class="row" id="abstract">
+            <div class="col-lg-10 mx-auto">
+                <div class="abstract">
+                    <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                        Is language supervision necessary for effective visual representations in multimodal tasks?
+                    </p>
+                    
+                    <div class="p-3 mb-4 rounded" style="background-color: rgba(37, 99, 235, 0.05); border-left: 4px solid var(--primary-color);">
+                        <p class="mb-0"><strong>Our experiments suggest it is not</strong> — With sufficient scale in both model size and training data, visual self-supervision alone can develop multimodal capabilities comparable to those of language-supervised models.</p>
+                    </div>
+                    
+                    <p>
+                        Visual Self-Supervised Learning (SSL) has typically underperformed in multimodal settings such as Visual Question Answering (VQA), where language-supervised models like CLIP consistently show much better results. This performance gap is often attributed to the semantics introduced by language supervision, even though visual SSL and CLIP models are frequently trained on different data distributions.
+                    </p>
+                    <p>
+                        We investigate this question by training both visual SSL and CLIP models on identical web-scale data (2 billion images from the MetaCLIP dataset) and scaling model capacity from 1B to 7B parameters. Our findings reveal that with appropriate scaling, pure visual SSL can match and even surpass language-supervised methods across diverse VQA tasks — including traditionally text-heavy categories like OCR & Chart understanding — without any language supervision.
+                    </p>
+                    <p class="mb-0">
+                        By controlling for data distribution and conducting systematic scaling experiments, we demonstrate that visual SSL methods scale more effectively than CLIP with increased model size and training data. These results suggest new possibilities for vision-centric representation learning in multimodal systems.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual SSL 2.0 -->
+        <section class="row" id="visual-ssl-2">
+            <div class="col-lg-10 mx-auto">
+                <h2 class="section-title">Visual SSL 2.0 Changes</h2>
+                
+                <div class="row mb-5">
+                    <!-- Box 1: Training Data -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div style="width: 70px; height: 70px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+                                    <i class="fas fa-database fa-2x text-white"></i>
+                                </div>
+                                <h4 class="card-title">Web-Scale Data</h4>
+                                <p class="card-text">Training visual SSL models on the MetaCLIP dataset (2B images) to control for data distribution differences with language-supervised methods</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Box 2: Model Scale -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div style="width: 70px; height: 70px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+                                    <i class="fas fa-microchip fa-2x text-white"></i>
+                                </div>
+                                <h4 class="card-title">Parameter Scaling</h4>
+                                <p class="card-text">Investigating Vision Transformers from 1B to 7B parameters to identify emerging capabilities</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Box 3: Evaluation -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div style="width: 70px; height: 70px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+                                    <i class="fas fa-tasks fa-2x text-white"></i>
+                                </div>
+                                <h4 class="card-title">Comprehensive Evaluation</h4>
+                                <p class="card-text">Rigorous assessment across 16 diverse VQA benchmarks spanning general, knowledge, OCR & chart, and vision-centric categories</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision Model Scales Section -->
+        <section id="scaling-experiments" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">Scaling Visual SSL</h2>
+                    
+                    <!-- Model Scaling Visualization -->
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <div class="scaling-card model-scaling p-4">
+                                <h3 class="scaling-title text-center mb-4">Effect of Parameter Scaling</h3>
+                                <div class="row">
+                                    <!-- Chart visualization -->
+                                    <div class="col-12 mb-4">
+                                        <div class="figure-container">
+                                            <img src="assets/figures/scale_model_wide_gradient.png" alt="Model scaling visualization showing Web-DINO outperforming CLIP at larger sizes" class="img-fluid" style="width: 100%; max-width: 1200px; margin: 0 auto; display: block;">
+                                            <div class="figure-caption text-center mt-3">
+                                                <strong>Model parameter scaling:</strong> Web-DINO demonstrates near log-linear performance improvements with increasing parameter count (+4.9% from 1B to 7B), while CLIP performance plateaus beyond 3B parameters (+0.7% from 3B to 7B).
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Key insights -->
+                                    <div class="col-md-6 mt-2">
+                                        <div class="p-3 rounded" style="background-color: rgba(37, 99, 235, 0.05);">
+                                            <h5 class="mb-3">AVG VQA Performance</h5>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">1B params</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #93c5fd;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">49.0%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">3B params</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #60a5fa;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">51.7%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">5B params</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #3b82f6;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">52.8%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">7B params</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 95%; background-color: #2563eb;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">53.9%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div class="findings-box">
+                                            <h5 class="mb-3">Key Findings</h5>
+                                            <ul class="mb-0 ps-3">
+                                                <li class="mb-2"><strong>Consistent scaling</strong>: Web-DINO shows continuous improvement across all parameter sizes</li>
+                                                <li class="mb-2"><strong>Category variation</strong>: OCR & Chart tasks show the steepest improvement curve (+12.9% from 1B to 7B)</li>
+                                                <li class="mb-2"><strong>CLIP comparison</strong>: Web-DINO outperforms CLIP at 7B parameters despite lacking language supervision</li>
+                                                <li><strong>Performance crossover</strong>: Occurs at approximately 5B parameters for average VQA accuracy</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Data Scaling Visualization -->
+                    <div class="row mt-5">
+                        <div class="col-lg-12">
+                            <div class="scaling-card data-scaling p-4">
+                                <h3 class="scaling-title text-center mb-4">Effect of Number of Training Samples</h3>
+                                <div class="row">
+                                    <!-- Chart visualization -->
+                                    <div class="col-12 mb-4">
+                                        <div class="figure-container">
+                                            <img src="assets/figures/scaling_dino_data_with_clip.png" alt="Data scaling visualization showing continuous improvement with more training data" class="img-fluid" style="width: 100%; max-width: 1200px; margin: 0 auto; display: block;">
+                                            <div class="figure-caption text-center mt-3">
+                                                <strong>Training data analysis:</strong> Web-DINO ViT-7B shows continued performance gains up to 8B examples seen (+5.0% from 1B to 8B), with OCR & Chart tasks exhibiting the most significant improvements (+15.6%).
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Key insights -->
+                                    <div class="col-md-6 mt-2">
+                                        <div class="p-3 rounded" style="background-color: rgba(255, 158, 27, 0.05);">
+                                            <h5 class="mb-3">OCR & Chart Performance</h5>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">1B examples</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #fdba74;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">26.8%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">2B examples</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 70%; background-color: #fb923c;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">31.3%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">4B examples</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #f97316;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">35.6%</span>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <span style="width: 80px; text-align: left; font-size: 0.9rem;">8B examples</span>
+                                                <div class="progress flex-grow-1" style="height: 10px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 95%; background-color: #ea580c;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="ms-2" style="width: 50px; text-align: right; font-size: 0.9rem;">42.4%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div class="findings-box">
+                                            <h5 class="mb-3">Task-Specific Insights</h5>
+                                            <ul class="mb-0 ps-3">
+                                                <li class="mb-2"><strong>General VQA</strong>: Moderate improvements (+3.3%) with diminishing returns after 2B examples</li>
+                                                <li class="mb-2"><strong>Knowledge VQA</strong>: Consistent gains (+4.0%) with stronger response to scaling</li>
+                                                <li class="mb-2"><strong>OCR & Chart</strong>: Most significant improvements, no signs of saturation (+15.6%)</li>
+                                                <li><strong>CLIP comparison</strong>: Web-DINO consistently outperforms CLIP given comparable training data volume</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questions & Analysis Section -->
+        <section id="research-questions" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">Questions and Analysis behind Scaling Results</h2>
+                    
+                    <!-- Navigation Pills for Questions -->
+                    <div class="custom-nav-pills mb-5">
+                        <a class="nav-link active" href="#question1">Question 1: Generality to other Method</a>
+                        <a class="nav-link" href="#question2">Question 2: Smaller Dataset Size</a>
+                        <a class="nav-link" href="#question3">Question 3: Classic Vision Benchmarks</a>
+                        <a class="nav-link" href="#question4">Question 4: OCR Performance</a>
+                        <a class="nav-link" href="#question5">Question 5: Language Alignment</a>
+                    </div>
+                    
+                    <div id="question1" class="research-question">
+                        <div class="question-header">
+                            <div class="question-number">1</div>
+                            <h3 class="question-title">Does the observed scaling behavior generalize to other visual SSL methods?</h3>
+                        </div>
+                        <div class="question-answer">
+                            <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                                Yes, both joint embedding methods (Web-DINO) and masked modeling methods (Web-MAE) exhibit similar scaling properties, though with distinctive performance characteristics.
+                            </p>
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <div class="p-3 rounded shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                                        <img src="assets/figures/scaling_with_mae.png" alt="Web-MAE vs Web-DINO performance comparison" class="img-fluid rounded">
+                                        <p class="text-center mt-2 mb-0" style="font-size: 0.9rem; font-style: italic;">Comparison of Web-DINO and Web-MAE performance across model scales (1B-5B parameters)</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="px-3">
+                                        <h4 class="mb-3" style="color: var(--secondary-color);">Findings:</h4>
+                                        <ul class="findings-list">
+                                            <li class="finding-item">Web-MAE and Web-DINO both show consistent improvements with model size (average VQA: +2.3% for Web-MAE and +4.9% for Web-DINO from 1B to 5B)</li>
+                                            <li class="finding-item">Web-MAE demonstrates better OCR & Chart performance (+6.1% compared to Web-DINO at 5B parameters)</li>
+                                        </ul>
+                                        <p>These results demonstrate that the positive scaling behavior of visual SSL methods generalizes across architectural approaches, suggesting the phenomenon is intrinsic to the visual self-supervised paradigm rather than specific algorithmic details.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="question2" class="research-question">
+                        <div class="question-header">
+                            <div class="question-number">2</div>
+                            <h3 class="question-title">Does visual SSL exhibit similar scaling behavior on smaller, conventional datasets?</h3>
+                        </div>
+                        <div class="question-answer">
+                            <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                                No, models trained on smaller datasets like ImageNet-1k (1.2M images) show negligible performance improvements with increased parameter count, highlighting the critical importance of diverse, web-scale data.
+                            </p>
+                            <div class="row align-items-center">
+                                <div class="col-md-7">
+                                    <div class="px-3">
+                                        <div class="comparison-chart p-3 rounded" style="background-color: rgba(90, 115, 2, 0.05); border-left: 4px solid var(--secondary-color);">
+                                            <h4 class="mb-3" style="color: var(--secondary-color);">Data Distribution Comparison</h4>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div style="width: 120px; height: 20px; background: linear-gradient(90deg, #e9ecef 30%, #ced4da 100%); border-radius: 10px;" class="me-3"></div>
+                                                <span>ImageNet-1k (1.2M images): <strong>No significant improvement</strong> (+0.1% from 1B to 3B)</span>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <div style="width: 120px; height: 20px; background: linear-gradient(90deg, #2563EB 30%, #1d4ed8 100%); border-radius: 10px;" class="me-3"></div>
+                                                <span>MetaCLIP data (2B+ images): <strong>Substantial improvement</strong> (+4.9% from 1B to 7B)</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <p>It parallels observations in language model research where data diversity and scale are crucial enablers for effective parameter scaling.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="p-3 rounded shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                                        <img src="assets/figures/pretrain_data_comparison_avg_first.png" alt="Comparison of ImageNet vs MC-2B training" class="img-fluid rounded">
+                                        <p class="text-center mt-2 mb-0" style="font-size: 0.9rem; font-style: italic;">Performance comparison between models trained on ImageNet-1k vs. MetaCLIP data across model sizes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="question3" class="research-question">
+                        <div class="question-header">
+                            <div class="question-number">3</div>
+                            <h3 class="question-title">How do scaled models perform on classic vision tasks?</h3>
+                        </div>
+                        <div class="question-answer">
+                            <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                                Web-DINO models maintain strong performance on traditional vision benchmarks while improving on VQA tasks. But there are no clear scaling trends on classic vision tasks with increased parameter count.
+                            </p>
+                            <div class="row align-items-center">
+                                <div class="col-md-7">
+                                    <div class="px-3">
+                                        <div class="task-performance mb-4">
+                                            <h4 class="mb-3" style="color: var(--secondary-color);">Performance on Classic Vision Tasks</h4>
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Model</th>
+                                                        <th>ImageNet-1k</th>
+                                                        <th>ADE20K</th>
+                                                        <th>NYU Depth</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Web-DINO ViT-1B</td>
+                                                        <td>84.7%</td>
+                                                        <td>51.0%</td>
+                                                        <td>0.364</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Web-DINO ViT-7B</td>
+                                                        <td>86.0%</td>
+                                                        <td>54.7%</td>
+                                                        <td>0.380</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MetaCLIP ViT-G</td>
+                                                        <td>86.4%</td>
+                                                        <td>46.7%</td>
+                                                        <td>0.524</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>DINOv2 ViT-g</td>
+                                                        <td>86.0%</td>
+                                                        <td>53.0%</td>
+                                                        <td>0.344</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <p>Unlike the VQA performance pattern, classic vision benchmarks show more modest gains with increased parameter count.</p>
+                                        
+                                        <p>This result highlights VQA's value as a complementary evaluation protocol that may better reflect real-world visual challenges.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="p-3 rounded shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                                        <img src="assets/figures/vision_eval_perf.png" alt="Classic vision task performance" class="img-fluid rounded">
+                                        <p class="text-center mt-2 mb-0" style="font-size: 0.9rem; font-style: italic;">Comparative performance trends on ImageNet, ADE20K and NYU Depth benchmarks</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="question4" class="research-question">
+                        <div class="question-header">
+                            <div class="question-number">4</div>
+                            <h3 class="question-title">Why does scaling up visual SSL improves OCR & Chart performance?</h3>
+                        </div>
+                        <div class="question-answer">
+                            <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                                Web-scale datasets naturally contain text-rich images that enable visual SSL models to learn OCR capabilities without explicit language supervision. Strategic data filtering further enhances this effect.
+                            </p>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-10 mx-auto">
+                                    <div class="figure-container">
+                                        <div class="row">
+                                            <div class="col-md-4 d-flex flex-column align-items-center">
+                                                <div style="width: 225px; height: 225px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                    <img src="assets/figures/rawdata.png" alt="Raw data examples" style="width: 300px; height: 225px; object-fit: cover;" class="rounded">
+                                                </div>
+                                                <p class="text-center" style="font-size: 0.9rem; width: 100%;">Raw MC-2B Data</p>
+                                            </div>
+                                            <div class="col-md-4 d-flex flex-column align-items-center">
+                                                <div style="width: 225px; height: 225px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                    <img src="assets/figures/lightfilter.png" alt="Light filtered data examples" style="width: 300px; height: 225px; object-fit: cover;" class="rounded">
+                                                </div>
+                                                <p class="text-center" style="font-size: 0.9rem; width: 100%;">Light Filter (50.3%)</p>
+                                            </div>
+                                            <div class="col-md-4 d-flex flex-column align-items-center">
+                                                <div style="width: 225px; height: 225px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                                    <img src="assets/figures/heavyfilter.png" alt="Heavy filtered data examples" style="width: 300px; height: 225px; object-fit: cover;" class="rounded">
+                                                </div>
+                                                <p class="text-center" style="font-size: 0.9rem; width: 100%;">Heavy Filter (1.3%)</p>
+                                            </div>
+                                        </div>
+                                        <div class="figure-caption text-center mt-3">
+                                            <strong>Figure:</strong> Examples of data filtering for text-rich content. Left: Random samples from MC-2B. Middle: Images with text (50.3% of data). Right: Charts, tables and documents (1.3% of data).
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2">Method</th>
+                                                    <th rowspan="2">% of MC-2B</th>
+                                                    <th rowspan="2">AVG</th>
+                                                    <th rowspan="2">General</th>
+                                                    <th rowspan="2">Knowledge</th>
+                                                    <th rowspan="2">Vision Centric</th>
+                                                    <th colspan="5">OCR & Chart</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Overall</th>
+                                                    <th>ChartQA</th>
+                                                    <th>OCRBench</th>
+                                                    <th>TextVQA</th>
+                                                    <th>DocVQA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="model-cell">CLIP ViT-2B</td>
+                                                    <td>100%</td>
+                                                    <td>53.0</td>
+                                                    <td>72.2</td>
+                                                    <td>48.8</td>
+                                                    <td>55.0</td>
+                                                    <td class="highlight-cell">36.1</td>
+                                                    <td>32.8</td>
+                                                    <td>32.9</td>
+                                                    <td>52.6</td>
+                                                    <td>26.0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="model-cell">Web-DINO ViT-2B</td>
+                                                    <td>100%</td>
+                                                    <td>50.8</td>
+                                                    <td>72.8</td>
+                                                    <td>47.1</td>
+                                                    <td>56.4</td>
+                                                    <td>26.8</td>
+                                                    <td>23.3</td>
+                                                    <td>15.6</td>
+                                                    <td>49.2</td>
+                                                    <td>19.0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="model-cell">Web-DINO ViT-2B</td>
+                                                    <td>50.3%</td>
+                                                    <td>53.4</td>
+                                                    <td>73.0</td>
+                                                    <td>51.7</td>
+                                                    <td>55.6</td>
+                                                    <td>33.2</td>
+                                                    <td>31.4</td>
+                                                    <td>27.3</td>
+                                                    <td>51.3</td>
+                                                    <td>23.0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="model-cell">Web-DINO ViT-2B</td>
+                                                    <td>1.3%</td>
+                                                    <td>53.7</td>
+                                                    <td>70.7</td>
+                                                    <td>47.3</td>
+                                                    <td>56.2</td>
+                                                    <td class="highlight-cell">40.4</td>
+                                                    <td>47.5</td>
+                                                    <td>29.4</td>
+                                                    <td>52.8</td>
+                                                    <td>32.0</td>
+                                                </tr>
+                                                <tr class="header-row">
+                                                    <td class="model-cell">Web-DINO (Heavy Filter) vs Full Data</td>
+                                                    <td>-</td>
+                                                    <td class="improvement-positive">+2.9%</td>
+                                                    <td class="improvement-negative">-2.1%</td>
+                                                    <td class="improvement-positive">+0.2%</td>
+                                                    <td class="improvement-negative">-0.2%</td>
+                                                    <td class="improvement-positive">+13.6%</td>
+                                                    <td class="improvement-positive">+24.2%</td>
+                                                    <td class="improvement-positive">+13.8%</td>
+                                                    <td class="improvement-positive">+3.6%</td>
+                                                    <td class="improvement-positive">+13.0%</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="figure-caption text-center mt-2 mb-4">
+                                        <strong>Table:</strong> Impact of data filtering on SSL model performance. Web-DINO ViT-2B models trained on different levels of text filtering (full, 50.3%, and 1.3%) compared against CLIP ViT-2B.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="insight p-3 rounded" style="background-color: rgba(37, 99, 235, 0.05); border-left: 4px solid var(--primary-color);">
+                                        <h5 class="mb-2">Key Improvements with Text Filtering</h5>
+                                        <ul class="mb-0 ps-3">
+                                            <li><strong>Light Filter (50.3%):</strong> +6.4% on OCR & Chart tasks</li>
+                                            <li><strong>Heavy Filter (1.3%):</strong> +13.6% on OCR & Chart tasks</li>
+                                            <li><strong>ChartQA Performance:</strong> +24.2% improvement with heavy filtering</li>
+                                            <li><strong>DocVQA Performance:</strong> +13.0% improvement with heavy filtering</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="insight p-3 rounded" style="background-color: rgba(90, 115, 2, 0.05); border-left: 4px solid var(--secondary-color);">
+                                        <h5 class="mb-2">Mechanistic Explanation</h5>
+                                        <p class="mb-0">Visual self-supervised learning can effectively extract and utilize textual information present in images without requiring explicit language supervision. Strategic data curation significantly enhances this capability while maintaining performance on other visual tasks.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                    
+                    <div id="question5" class="research-question">
+                        <div class="question-header">
+                            <div class="question-number">5</div>
+                            <h3 class="question-title">Why can SSL learn strong visual representations for multimodal modeling without language supervision?</h3>
+                        </div>
+                        <div class="question-answer">
+                            <p class="lead fw-bold" style="color: var(--primary-color); border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 15px;">
+                                As model size and data increase, SSL models naturally develop representational alignment with language features despite lacking explicit language supervision.
+                            </p>
+                            <div class="row align-items-center">
+                                <div class="col-md-7">
+                                    <div class="px-3">
+                                    
+                                        <div class="alignment-factors mt-4">
+                                            <h4 class="mb-3" style="color: var(--secondary-color);">Factors Driving Language Alignment</h4>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div style="width: 70px; height: 40px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;" class="me-3">
+                                                    <i class="fas fa-database"></i>
+                                                </div>
+                                                <div><strong>Web-scale training data</strong> exposes models to diverse visual concepts that have strong correlations with language</div>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div style="width: 60px; height: 40px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;" class="me-3">
+                                                    <i class="fas fa-microchip"></i>
+                                                </div>
+                                                <div><strong>Increased parameter capacity</strong> enables representation of linguistic concepts through visual patterns</div>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <div style="width: 50px; height: 40px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;" class="me-3">
+                                                    <i class="fas fa-eye"></i>
+                                                </div>
+                                                <div><strong>More training examples</strong> refine and strengthen language-correlated visual features</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="p-3 rounded shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+                                        <img src="assets/figures/alignment_scatter_plot.png" alt="LLM alignment visualization" class="img-fluid rounded">
+                                        <p class="text-center mt-2 mb-0" style="font-size: 0.9rem; font-style: italic;">Measurement of representational alignment between visual features and Llama-3 8B/70B language models</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways Section -->
+        <section id="conclusions" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">Key Takeaways</h2>
+                    
+                    <div class="highlight-box p-4" style="background-color: rgba(37, 99, 235, 0.05); border-radius: 15px; border-left: 8px solid var(--primary-color);">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="findings-list" style="list-style-type: none; padding-left: 0;">
+                                    <li class="mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-primary p-2 me-3" style="font-size: 1rem; min-width: 36px; text-align: center;">1</span>
+                                            <div>
+                                                <h4 class="mb-1">Strong Scaling Properties</h4>
+                                                <p class="mb-0">Visual SSL models demonstrate consistent improvement with both model size (1B to 7B parameters, +4.9% avg. VQA accuracy) and training data volume (1B to 8B examples, +5.0% avg. VQA accuracy). These scaling trends continue where CLIP models plateau beyond moderate sizes.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-primary p-2 me-3" style="font-size: 1rem; min-width: 36px; text-align: center;">2</span>
+                                            <div>
+                                                <h4 class="mb-1">Data Distribution is Critical</h4>
+                                                <p class="mb-0">SSL models trained on traditional, smaller datasets like ImageNet-1k (1.2M images) show negligible improvements with increased parameter count. Web-scale, diverse data is necessary to enable effective parameter scaling for visual SSL models.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-primary p-2 me-3" style="font-size: 1rem; min-width: 36px; text-align: center;">3</span>
+                                            <div>
+                                                <h4 class="mb-1">Text-Rich Data Enhances OCR Capabilities</h4>
+                                                <p class="mb-0">Training on a data subset containing text-rich images (1.3% of total data) significantly improves OCR & Chart understanding (+13.6% absolute improvement) without requiring language supervision, even outperforming comparable CLIP models by +4.3%.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-primary p-2 me-3" style="font-size: 1rem; min-width: 36px; text-align: center;">4</span>
+                                            <div>
+                                                <h4 class="mb-1">Emergent Language Alignment</h4>
+                                                <p class="mb-0">Visual SSL models naturally develop representations that increasingly align with language models as they scale (+12.5% alignment score improvements), suggesting an intrinsic connection between visual and linguistic understanding that emerges without explicit cross-modal training.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">Resources</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="resources-card card">
+                                <div class="card-body text-center">
+                                    <div class="key-point-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <h3 class="card-title">Paper</h3>
+                                    <p class="card-text">Read our complete research paper with detailed methodology, results, and analysis.</p>
+                                    <a href="#" class="btn primary-btn">Download Paper</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="resources-card card">
+                                <div class="card-body text-center">
+                                    <div class="key-point-icon">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <h3 class="card-title">Code & Models</h3>
+                                    <p class="card-text">Access our open-source implementation, trained models, and evaluation code.</p>
+                                    <a href="#" class="btn secondary-btn">GitHub Repository</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="resources-card card">
+                                <div class="card-body text-center">
+                                    <div class="key-point-icon">
+                                        <i class="fas fa-weight-hanging"></i>
+                                    </div>
+                                    <h3 class="card-title">Model Weights</h3>
+                                    <p class="card-text">Download our Web-DINO model weights for your research or applications.</p>
+                                    <a href="#" class="btn accent-btn">Download Models</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Citation Section -->
+        <section id="citation" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">Citation</h2>
+                    <div class="bg-light p-4 rounded">
+                        <pre><code>@inproceedings{fan2025scaling,
+  title={Scaling Language-Free Visual Representation Learning},
+  author={Fan, David and Tong, Shengbang and Zhu, Jiachen and Sinha, Koustuv and Liu, Zhuang and Chen, Xinlei and Rabbat, Michael and Ballas, Nicolas and LeCun, Yann and Bar, Amir and Xie, Saining},
+  booktitle={TBD},
+  year={2025}
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Frequently Asked Questions Section -->
+        <section id="faq" class="mt-5">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">FAQ</h2>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What is the difference between SSL and CLIP?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Visual Self-Supervised Learning (SSL) methods learn representations from images alone, using various pretext tasks like contrastive learning or masked image modeling. In contrast, Contrastive Language-Image Pretraining (CLIP) learns from paired image-text data, creating representations that align visual features with linguistic semantics. The primary distinction is that SSL operates without language supervision, while CLIP explicitly leverages language to guide representation learning.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How do you evaluate vision models on VQA tasks?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>We use a controlled two-stage visual instruction tuning procedure. First, a lightweight MLP adapter projects the vision encoder features into the LLM dimensionality, with only this adapter being trained. In the second stage, both the MLP adapter and LLM are finetuned. Critically, the vision encoder remains frozen in both stages, enabling fair comparison across different vision encoders. All experiments use the same LLM backbone (Llama-3 8B Instruct) and identical training data from Cambrian-Alignment and Cambrian-7M datasets to ensure consistent evaluation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Why do visual SSL models perform well on OCR & Chart tasks?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Web-scale image datasets naturally contain significant textual information. Unlike object-centric datasets like ImageNet, web images frequently include text in the form of labels, signs, charts, and documents. Our research demonstrates that with sufficient training data (2B+ images) and model capacity (5B+ parameters), visual SSL models can develop effective text recognition capabilities without explicit language supervision. We found that strategic filtering for text-rich images further enhances OCR & Chart performance (+13.6% improvement), allowing SSL models to outperform comparable CLIP models (+4.3%) with only 1.3% of the original training data volume.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Will you release the models?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <p>Yes, we plan to open-source our Web-SSL vision models to support reproducibility and further research in language-free visual representation learning. Code, model weights, and training recipes will be available via our GitHub repository. We hope releasing these resources will enable the broader research community to further investigate the potential of scaled visual SSL models for multimodal applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center">
+                    <div class="mb-4">
+                        <a href="#" class="text-light mx-2"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-light mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-light mx-2"><i class="fas fa-globe fa-lg"></i></a>
+                    </div>
+                    <p>&copy; 2025 FAIR, Meta & New York University</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

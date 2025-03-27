@@ -1,0 +1,86 @@
+/* Sophisticated Neutrals Color Scheme */
+:root {
+    /* Modern color palette */
+    --primary-color: #334155;       /* Charcoal Blue */
+    --secondary-color: #84A98C;     /* Sage Green */
+    --accent-color: #CB8A58;        /* Terracotta */
+    --light-color: #FFFBF5;         /* Warm Cream */
+    --dark-color: #1F2937;          /* Deep Charcoal */
+    --text-color: #4B5563;          /* Medium Gray */
+    --background-color: #FFFBF5;    /* Warm Background */
+    --card-background: #FFFFFF;
+    
+    /* Simplified gradients */
+    --header-gradient: linear-gradient(to bottom, #F8F9FA, #FFFBF5);
+    --footer-gradient: linear-gradient(to right, #1F2937, #334155);
+    --nav-gradient: var(--primary-color);  /* Solid color instead of gradient */
+    
+    --header-text-color: #1F2937;
+    --footer-text-color: #ffffff;
+    --font-family: 'Nunito', 'Avenir Next', 'Segoe UI', sans-serif;
+    --link-color: var(--primary-color);
+    
+    /* Additional modern variables */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    --box-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* Button hover states */
+.primary-btn:hover {
+    background-color: #1F2937; /* Darker blue */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(51, 65, 85, 0.3);
+}
+
+.secondary-btn:hover {
+    background-color: #6B8E75; /* Darker sage */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(132, 169, 140, 0.3);
+}
+
+.accent-btn:hover {
+    background-color: #B47444; /* Darker terracotta */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(203, 138, 88, 0.3);
+}
+
+/* Progress bar colors */
+.progress-bar[style*="background-color: #93c5fd"] {
+    background-color: #94A3B8 !important; /* Lighter slate */
+}
+
+.progress-bar[style*="background-color: #60a5fa"] {
+    background-color: #64748B !important; /* Light slate */
+}
+
+.progress-bar[style*="background-color: #3b82f6"] {
+    background-color: #475569 !important; /* Medium slate */
+}
+
+.progress-bar[style*="background-color: #2563eb"] {
+    background-color: var(--primary-color) !important; /* Main slate */
+}
+
+/* Amber progress bars updated to terracotta tones */
+.progress-bar[style*="background-color: #fdba74"] {
+    background-color: #F4C7AB !important; /* Lighter terracotta */
+}
+
+.progress-bar[style*="background-color: #fb923c"] {
+    background-color: #E5B388 !important; /* Light terracotta */
+}
+
+.progress-bar[style*="background-color: #f97316"] {
+    background-color: #CB8A58 !important; /* Medium terracotta */
+}
+
+.progress-bar[style*="background-color: #ea580c"] {
+    background-color: #B47444 !important; /* Dark terracotta */
+}
