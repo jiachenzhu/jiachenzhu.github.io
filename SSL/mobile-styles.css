@@ -252,3 +252,211 @@
       padding: 15px !important;
     }
   }
+
+/* 
+ * Complete Mobile Layout Fix
+ * Resolves narrow box issues on mobile devices
+ */
+
+/* ===== Mobile Width Fix ===== */
+@media (max-width: 768px) {
+    /* Reset container width constraints */
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-xxl {
+      max-width: 100% !important; 
+      width: 100% !important;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Remove width restrictions on main content */
+    .col-lg-11.mx-auto {
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    /* Fix row margins that may cause overflow */
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+    
+    /* Prevent horizontal overflow */
+    body, html {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    /* Remove any fixed widths on individual sections */
+    .section, .tldr-box, .research-question, 
+    .scaling-card, .figure-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Fix card layout */
+    .card {
+      width: 100% !important;
+      min-width: auto !important;
+      max-width: 100% !important;
+    }
+    
+    /* Fix findings cards in TLDR section */
+    .finding-card {
+      width: 100% !important;
+      min-width: auto !important;
+      max-width: 100% !important;
+      margin-bottom: 15px !important;
+    }
+    
+    /* Fix custom navigation pills */
+    .custom-nav-pills {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex-direction: column !important;
+    }
+    
+    .custom-nav-pills .nav-link {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-bottom: 5px !important;
+    }
+  
+    /* Remove fixed width on tables and data containers */
+    .table-responsive,
+    .chart-container,
+    .data-table {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+    }
+    
+    /* Ensure images scale properly */
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+  }
+  
+  /* ===== Specific Section Fixes ===== */
+  @media (max-width: 768px) {
+    /* TLDR Section */
+    .tldr-box .row .col-md-12,
+    .tldr-box .row .col-lg-12 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    .tldr-box .p-4 {
+      padding: 15px !important;
+    }
+    
+    /* Key findings cards */
+    .key-findings .row {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    
+    .key-findings .col-md-4 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    /* Approach Section */
+    #approach .col-md-4 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    /* Scaling Experiments */
+    #scaling-experiments .col-md-5,
+    #scaling-experiments .col-md-7 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    /* Research Questions */
+    #research-questions .col-md-6 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    /* Fix progress bars */
+    .d-flex.align-items-center {
+      flex-wrap: nowrap !important;
+    }
+    
+    /* Fix the comparison chart in Question 2 */
+    .comparison-chart {
+      padding: 10px !important;
+    }
+    
+    /* OCR & Chart Section (Question 4) */
+    #question4 .col-md-11 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+    
+    #question4 .row.mx-0 {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    
+    #question4 .col-md-6 {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  }
+  
+  /* ===== Very Small Devices ===== */
+  @media (max-width: 576px) {
+    /* Further container adjustments */
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-xxl {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    
+    /* Fix accordion buttons */
+    .accordion-button {
+      font-size: 0.95rem !important;
+      padding: 12px !important;
+    }
+    
+    /* Fix figure examples in Question 4 */
+    #question4 [style*="width: 225px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 225px !important;
+      margin: 0 auto 10px auto !important;
+    }
+    
+    #question4 [style*="width: 300px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+    
+    /* Fix citation overflow */
+    #citation pre {
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      font-size: 0.8rem !important;
+    }
+  }
