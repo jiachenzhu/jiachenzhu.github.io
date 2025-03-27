@@ -1,0 +1,33 @@
+/* 
+ * Navigation Pill Text Color Fix
+ * This CSS ensures the text in active navigation pills is white
+ * Uses high specificity and !important to override any conflicting styles
+ */
+
+/* Ensure active pill text is white with high specificity */
+.custom-nav-pills .nav-link.active,
+.custom-nav-pills a.nav-link.active,
+nav .custom-nav-pills .nav-link.active,
+body .custom-nav-pills .nav-link.active {
+  color: #FFFFFF !important;
+  background-color: var(--primary-color) !important;
+  font-weight: 600 !important;
+}
+
+/* Handle hover state without disturbing active state */
+.custom-nav-pills .nav-link:not(.active):hover {
+  color: var(--primary-color) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Target any potential ID-based selectors that might be overriding */
+#research-questions .custom-nav-pills .nav-link.active,
+#scaling-experiments .custom-nav-pills .nav-link.active,
+#approach .custom-nav-pills .nav-link.active {
+  color: #FFFFFF !important;
+}
+
+/* Fix for potential inherited color properties */
+.custom-nav-pills .nav-link.active * {
+  color: #FFFFFF !important;
+}
