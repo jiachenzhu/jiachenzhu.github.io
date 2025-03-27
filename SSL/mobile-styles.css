@@ -1,0 +1,278 @@
+/* 
+ * Mobile-Only Styles
+ * This stylesheet only contains styles that activate on mobile devices
+ * Desktop appearance remains completely unchanged
+ */
+
+/* Only apply these styles on screens 768px and smaller */
+@media (max-width: 768px) {
+    /* ===== Header Section Improvements ===== */
+    .paper-title {
+      font-size: 2rem; /* Slightly smaller on mobile */
+      line-height: 1.2;
+    }
+    
+    /* Improve author listings on small screens */
+    .author-line {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 8px 0;
+    }
+    
+    /* Better spacing for institution logos */
+    .institution-logos {
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    
+    /* Stack buttons for better mobile experience */
+    .header-section .mt-4 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .header-section .btn {
+      margin: 0 !important;
+      width: 80%;
+      max-width: 250px;
+    }
+    
+    /* ===== TLDR Section Improvements ===== */
+    .tldr-box {
+      padding: 20px !important; /* More compact padding */
+    }
+    
+    .tldr-box h2 {
+      font-size: 2rem !important;
+    }
+    
+    .tldr-box p.lead {
+      font-size: 1.1rem !important;
+      text-align: left !important;
+    }
+    
+    .key-findings .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+    
+    .finding-card {
+      height: auto !important;
+      padding: 15px !important;
+      margin-bottom: 15px;
+    }
+    
+    .finding-card h5 {
+      font-size: 1.1rem !important;
+    }
+    
+    .finding-card p {
+      font-size: 0.95rem !important;
+    }
+    
+    /* ===== Approach Section Improvements ===== */
+    #approach .card {
+      margin-bottom: 15px;
+    }
+    
+    #approach .card-body {
+      padding: 15px !important;
+    }
+    
+    /* Make the icon circles smaller on mobile */
+    #approach [style*="width: 70px; height: 70px;"] {
+      width: 50px !important;
+      height: 50px !important;
+      margin-bottom: 15px !important;
+    }
+    
+    #approach .card-title {
+      font-size: 1.2rem !important;
+    }
+    
+    /* ===== Scaling Experiments Improvements ===== */
+    .scaling-card {
+      padding: 15px !important;
+    }
+    
+    .scaling-title {
+      font-size: 1.3rem !important;
+      margin-bottom: 15px !important;
+    }
+    
+    /* Adjust progress bars for better mobile display */
+    .progress {
+      height: 12px !important;
+    }
+    
+    /* Add horizontal scrolling to avoid breaking layout */
+    .figure-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 15px !important;
+    }
+    
+    /* Ensure all images are responsive */
+    .figure-container img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .figure-caption {
+      font-size: 0.85rem !important;
+      padding: 0 5px;
+    }
+    
+    /* Make params and values more readable on mobile */
+    [style*="width: 80px; text-align: left;"] {
+      width: 70px !important;
+      font-size: 0.85rem !important;
+    }
+    
+    [style*="width: 50px; text-align: right;"] {
+      width: 45px !important;
+      font-size: 0.85rem !important;
+    }
+    
+    /* ===== Research Questions Improvements ===== */
+    .research-question {
+      padding: 20px !important;
+      margin: 20px 0 !important;
+    }
+    
+    .question-number {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 1rem !important;
+    }
+    
+    .question-title {
+      font-size: 1.2rem !important;
+      line-height: 1.3 !important;
+    }
+    
+    /* Better handle collapse/expand icons */
+    .question-header .ms-auto {
+      margin-left: auto !important;
+    }
+    
+    .question-header .fas {
+      font-size: 1rem !important;
+    }
+    
+    /* ===== Table Improvements ===== */
+    /* Make tables scrollable horizontally without breaking layout */
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .data-table {
+      font-size: 0.85rem !important;
+    }
+    
+    .data-table th,
+    .data-table td {
+      padding: 6px 8px !important;
+      white-space: nowrap;
+    }
+    
+    /* ===== Sample Image Container Fixes ===== */
+    /* Fix the image containers in question 4 */
+    #question4 [style*="width: 225px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+      margin-bottom: 15px !important;
+    }
+    
+    #question4 [style*="width: 300px; height: 225px;"] {
+      width: 100% !important;
+      height: auto !important;
+    }
+    
+    /* ===== Key Findings Improvements ===== */
+    #conclusions .d-flex {
+      flex-wrap: wrap !important;
+      align-items: flex-start !important;
+    }
+    
+    #conclusions .badge {
+      margin-bottom: 10px !important;
+    }
+    
+    /* ===== FAQ Improvements ===== */
+    .accordion-button {
+      padding: 15px !important;
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+    }
+    
+    .accordion-body {
+      padding: 15px !important;
+      font-size: 0.95rem !important;
+    }
+    
+    /* ===== Resources Section ===== */
+    #resources .resources-card {
+      margin-bottom: 20px !important;
+    }
+    
+    #resources .card-body {
+      padding: 20px !important;
+    }
+    
+    /* ===== Citation Section ===== */
+    #citation pre {
+      font-size: 0.85rem !important;
+      white-space: pre-wrap !important;
+      word-break: break-word !important;
+      padding: 15px !important;
+    }
+    
+    /* ===== Footer Improvements ===== */
+    .footer {
+      padding: 30px 0 !important;
+      margin-top: 60px !important;
+      text-align: center !important;
+    }
+  }
+  
+  /* Extra small devices (phones, 576px and down) */
+  @media (max-width: 576px) {
+    .paper-title {
+      font-size: 1.8rem !important;
+    }
+    
+    .equal-contribution {
+      flex-direction: column !important;
+    }
+    
+    .equal-contribution .mx-2 {
+      display: none !important; /* Hide the separator on very small screens */
+    }
+    
+    /* Ensure touch targets are at least 44px high for accessibility */
+    .btn, 
+    .nav-link, 
+    .accordion-button {
+      min-height: 44px !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+    
+    /* Fix progress bars on very small screens */
+    .progress {
+      height: 10px !important;
+    }
+    
+    /* Further improve tables on very small screens */
+    .data-table {
+      font-size: 0.8rem !important;
+    }
+  }

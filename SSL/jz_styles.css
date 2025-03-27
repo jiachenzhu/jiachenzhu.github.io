@@ -1297,3 +1297,18 @@ p.lead.fw-bold strong {
     height: auto;
 }
 
+/* Update the text color in active nav pills to white */
+.custom-nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: white !important; /* Override the global text color with !important */
+}
+
+/* Ensure hover state also has proper contrast if background changes */
+.custom-nav-pills .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* If there's a transition, make sure it applies to color too */
+.custom-nav-pills .nav-link {
+    transition: all 0.3s ease;
+}
