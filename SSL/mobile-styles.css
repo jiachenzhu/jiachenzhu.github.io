@@ -711,3 +711,100 @@ html, body {
       padding: 10px !important;
     }
   }
+
+/* 
+ * Website Centering Fix
+ * This CSS ensures the website content is properly centered
+ */
+
+/* Reset container widths to use standard Bootstrap centering */
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  max-width: 1320px !important; /* Bootstrap's default for xxl */
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix the col-lg-11 that's restricting width */
+.col-lg-11.mx-auto {
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Fix row margins that might be causing misalignment */
+.row {
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+  width: auto !important; /* Allow natural width */
+  max-width: none !important;
+}
+
+/* On larger screens, prevent figures from getting too wide */
+@media (min-width: 992px) {
+  .figure-container {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  .tldr-box .figure-container {
+    max-width: 800px !important;
+  }
+}
+
+/* Override the custom settings in jz_styles.css */
+@media (min-width: 1400px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1320px !important; /* Bootstrap default */
+  }
+  
+  .col-lg-11.mx-auto {
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+}
+
+/* Ensure the header is properly centered */
+.header-section .container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Fix for TLDR section alignment */
+#tldr .col-lg-11.mx-auto {
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+/* Fix for finding cards that might be causing misalignment */
+.key-findings .row {
+  margin-left: -10px !important;
+  margin-right: -10px !important;
+}
+
+/* Ensure the custom-nav-pills are centered */
+.custom-nav-pills {
+  width: auto !important;
+  justify-content: center !important;
+}
+
+/* Fix for the scaling cards section */
+#scaling-experiments .scaling-card {
+  width: 100% !important;
+}
