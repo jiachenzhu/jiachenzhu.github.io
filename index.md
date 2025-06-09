@@ -2,7 +2,7 @@
 
 ### About Me (Jiachen Zhu / 朱家晨）
 I am a fifth-year PhD candidate in Computer Science at NYU Courant, advised by [Yann LeCun](http://yann.lecun.com/). \
-I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Zhuang Liu](https://liuzhuang13.github.io/).
+I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Zhuang Liu](https://liuzhuang13.github.io/) and [Koustuv Sinha](https://koustuvsinha.com/).
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - Now
