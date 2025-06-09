@@ -4,9 +4,6 @@
 I am a fifth-year PhD candidate in Computer Science at NYU Courant, advised by [Yann LeCun](http://yann.lecun.com/). \
 I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Zhuang Liu](https://liuzhuang13.github.io/).
 
-### Job Search
-**I am actively seeking full-time research positions in vision models or vision-language models starting in late 2025. If you think my background aligns with your team's goals, please reach out!**
-
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - Now
 - MSc, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2018 - 2020
@@ -16,6 +13,9 @@ I am also a Visiting Researcher at FAIR, Meta, where I am hosted by [Zhuang Liu]
 My research focuses on self-supervised learning for images and videos, as well as pretraining vision encoders for vision-language models (VLMs). I am also interested in understanding the design of all kind of neural network architectures.
 
 ### Papers
+
+[Scaling Language-Free Visual Representation Learning](https://davidfan.io/webssl/)
+
 [Transformers without Normalization](https://jiachenzhu.github.io/DyT/)
 
 [MetaMorph: Multimodal Understanding and Generation via Instruction Tuning](https://arxiv.org/abs/2412.14164v1)
