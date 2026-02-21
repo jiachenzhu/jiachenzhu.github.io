@@ -2,7 +2,7 @@
 
 ### About Me (Jiachen Zhu / 朱家晨)
 I am a Research Scientist at [Skild AI](https://www.skild.ai/), where I am currently working on building VLA/VA models with strong vision capabilities. If you are interested in an internship or full-time role at Skild AI, feel free to reach out! \
-Prior to joining Skild, I received my PhD from NYU in June 2025, advised by [Yann LeCun](http://yann.lecun.com/). I also spent an extended period at FAIR, Meta AI, where I worked closely with [Jing Li](https://jingli.io/), [Yubei Chen](https://yubeichen.com/), and [Zhuang Liu](https://liuzhuang13.github.io/).
+Prior to joining Skild, I received my PhD from NYU in July 2025, advised by [Yann LeCun](http://yann.lecun.com/). I also spent an extended period at FAIR, Meta AI, where I worked closely with [Jing Li](https://jingli.io/), [Yubei Chen](https://yubeichen.com/), and [Zhuang Liu](https://liuzhuang13.github.io/).
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - 2025
@@ -12,7 +12,7 @@ Prior to joining Skild, I received my PhD from NYU in June 2025, advised by [Yan
 ### Research Interests
 My current research focuses on leveraging in-the-wild videos to improve VLA models, particularly their vision capabilities. I am also interested in building an agentic layer on top of VLA models to accomplish long-horizon tasks that require memory and planning.
 
-During my PhD, I worked on self-supervised learning for images and videos, as well as pretraining vision encoders for vision-language models (VLMs). I also maintain a broad interest in understanding the design principles behind various neural network architectures.
+During my PhD, I worked on self-supervised learning for images and videos, as well as pretraining vision encoders for VLMs. I also maintain a broad interest in understanding the design principles behind various neural network architectures.
 
 ### Papers
 
