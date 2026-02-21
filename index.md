@@ -4,6 +4,7 @@
 I am a Research Scientist at [Skild AI](https://www.skild.ai/), where I am currently working on building VLA/VA models with strong vision capabilities. \
 Prior to joining Skild, I received my PhD from NYU in June 2025, advised by [Yann LeCun](http://yann.lecun.com/). I also spent an extended period at FAIR, Meta, where I worked closely with [Jing Li](https://jingli.io/), [Yubei Chen](https://yubeichen.com/), and [Zhuang Liu](https://liuzhuang13.github.io/).
 
+If you are interested in an internship or full-time role at Skild AI, feel free to reach out!
 
 ### Education
 - PhD, Computer Science, [New York University](https://cs.nyu.edu/home/index.html), 2020 - 2025
