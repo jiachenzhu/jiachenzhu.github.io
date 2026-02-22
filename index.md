@@ -10,7 +10,7 @@ Prior to joining Skild, I received my PhD from NYU in July 2025, advised by [Yan
 - BSc, Computer Science, [The Hong Kong Polytechnic University](https://www.comp.polyu.edu.hk/), 2010 - 2015
 
 ### Research Interests
-My current research focuses on leveraging in-the-wild videos to improve VLA models, particularly their vision capabilities. I am also interested in building an agentic layer on top of VLA models to accomplish long-horizon tasks that require memory and planning.
+My current research focuses on leveraging **in-the-wild videos** to improve VLA models, particularly their vision capabilities. I am also interested in building an **agentic model** on top of VLA models to accomplish **long-horizon tasks** that require memory and planning.
 
 During my PhD, I worked on self-supervised learning for images and videos, as well as pretraining vision encoders for VLMs. I also maintain a broad interest in understanding the design principles behind various neural network architectures.
 
